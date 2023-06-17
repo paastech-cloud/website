@@ -21,7 +21,7 @@ export const NavLink = (props: NavLinkProps) => (
           bg: useColorModeValue('gray.200', 'gray.700'),
         }}
         css={linkCss}>
-    aaa
+    {props.title}
   </Link>
 );
 
