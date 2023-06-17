@@ -1,11 +1,10 @@
 import { Box, Button, Flex, Heading, HStack, Image, Link } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Link as RouterLink } from 'react-router-dom';
 import { NavLink } from '@components/NavLink';
 
 import logo from '@/assets/logo.png';
+import { FaGithub } from 'react-icons/fa';
 
 type NavbarProps = {
   links: { title: string; link: string }[];
@@ -46,7 +45,7 @@ export const Navbar = (props: NavbarProps) => {
           </HStack>
 
           <Link href="https://github.com/paas-tech" isExternal>
-            <FontAwesomeIcon icon={faGithub} size="2xl" opacity={0.3}/>
+            <FaGithub size={'30px'} opacity={0.3}/>
           </Link>
         </Flex>
       </Flex>
