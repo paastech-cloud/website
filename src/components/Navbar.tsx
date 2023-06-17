@@ -5,7 +5,7 @@ import { capitalizeFirstLetter } from "../helper/TextFormating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Link as RouterLink } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
 
 const Links = ["home", "docs", "status", "community"];
 
