@@ -1,11 +1,16 @@
-import { Heading } from "@chakra-ui/react";
+import React from 'react';
+import { RouterProvider } from 'react-router';
+import { ChakraProvider } from '@chakra-ui/react';
+import { AppRouter } from '@/AppRouter';
 
-function App() {
+export const App = () => {
+  const router = AppRouter();
+
   return (
-    <>
-      <Heading>Hello world</Heading>
-    </>
+    <React.StrictMode>
+      <ChakraProvider>
+        <RouterProvider router={router}/>
+      </ChakraProvider>
+    </React.StrictMode>
   );
-}
-
-export default App;
+};
