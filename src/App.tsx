@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <React.StrictMode>
       <ChakraProvider theme={customTheme}>
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
       </ChakraProvider>
     </React.StrictMode>
   );
