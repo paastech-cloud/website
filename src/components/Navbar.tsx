@@ -31,13 +31,13 @@ export const Navbar = (props: NavbarProps) => {
         </HStack>
 
         <Flex>
-          <HStack spacing={3} display={{ base: 'none', md: 'flex' }}>
+          <HStack spacing={3} display={{ base: 'none', md: 'flex' }} marginRight={"20px"}>
             <NavLink link={'/signup'} title={'signup'}/>
             <Button as={RouterLink}
                     to="/install"
                     variant="solid"
-                    colorScheme="teal"
-                    size="sm"
+                    bg="brand.green"
+                    size="md"
                     mr={4}
                     leftIcon={<AddIcon/>}>
               Install
@@ -45,7 +45,7 @@ export const Navbar = (props: NavbarProps) => {
           </HStack>
 
           <Link href="https://github.com/paas-tech" isExternal>
-            <FaGithub size={'30px'} opacity={0.3}/>
+            <FaGithub size={'50px'} opacity={0.3}/>
           </Link>
         </Flex>
       </Flex>

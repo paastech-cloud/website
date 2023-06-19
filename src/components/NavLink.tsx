@@ -16,6 +16,7 @@ export const NavLink = (props: NavLinkProps) => (
         py={1}
         rounded={'md'}
         fontWeight={'bold'}
+        fontSize={'xl'}
         _hover={{
           textDecoration: 'none',
           bg: useColorModeValue('gray.200', 'gray.700'),
