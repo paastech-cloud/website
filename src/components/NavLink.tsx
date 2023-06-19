@@ -12,14 +12,14 @@ type NavLinkProps = {
 export const NavLink = (props: NavLinkProps) => (
   <Link as={RouterLink}
         to={props.link}
-        px={2}
-        py={1}
+        px={2} py={1}
         rounded={'md'}
         fontWeight={'bold'}
         fontSize={'xl'}
         _hover={{
           textDecoration: 'none',
-          bg: useColorModeValue('gray.200', 'gray.700'),
+          color: useColorModeValue('white', 'white'),
+          bg: useColorModeValue('green.400', 'green.400'),
         }}
         css={linkCss}>
     {props.title}
@@ -28,4 +28,7 @@ export const NavLink = (props: NavLinkProps) => (
 
 const linkCss = css`
   text-transform: capitalize;
+  :hover {
+    filter: drop-shadow(0 0 2rem #42b883aa);
+  }
 `;
