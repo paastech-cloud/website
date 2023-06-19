@@ -5,7 +5,7 @@ import { AppRouter } from '@/AppRouter';
 import { customTheme } from '@/theme';
 
 export const App = () => {
-  const router = AppRouter();
+  const router = AppRouter()
 
   return (
     <React.StrictMode>
