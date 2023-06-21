@@ -15,6 +15,14 @@ const AppLayout = () => {
   return (
     <>
       <Navbar
+        primaryLink={{
+          title: 'Login',
+          link: '/login',
+        }}
+        secondaryLink={{
+          title: 'Register',
+          link: '/register',
+        }}
         links={[
           {
             title: 'Home',

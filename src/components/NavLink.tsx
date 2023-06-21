@@ -7,6 +7,8 @@ import { css } from '@emotion/react';
 type NavLinkProps = {
   title: ReactNode | string;
   link: To;
+  variant?: string;
+  bg?: string;
 };
 
 export const NavLink = (props: NavLinkProps) => (
@@ -20,10 +22,12 @@ export const NavLink = (props: NavLinkProps) => (
     fontSize={'xl'}
     _hover={{
       textDecoration: 'none',
-      color: useColorModeValue('white', 'white'),
-      bg: useColorModeValue('green.400', 'green.400'),
+      color: useColorModeValue('dark', 'dark'),
+      bg: useColorModeValue('green.500', 'green.500'),
     }}
     css={linkCss}
+    variant={props.variant}
+    bg={props.bg}
   >
     {props.title}
   </Link>
@@ -31,8 +35,9 @@ export const NavLink = (props: NavLinkProps) => (
 
 const linkCss = css`
   text-transform: capitalize;
+  padding: 7px 15px;
 
   :hover {
-    filter: drop-shadow(0 0 2rem #42b883aa);
+    filter: drop-shadow(0 0 1rem #42b883aa);
   }
 `;
