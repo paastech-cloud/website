@@ -5,7 +5,7 @@ export const AppRouter = () => {
   return createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path={'/'} element={<AppLayout/>}></Route>
+        <Route path={'/'} element={<AppLayout />}></Route>
       </Route>,
     ),
   );
@@ -14,26 +14,36 @@ export const AppRouter = () => {
 const AppLayout = () => {
   return (
     <>
-      <Navbar links={[
-        {
-          title: 'Home',
-          link: 'home',
-        },
-        {
-          title: 'Docs',
-          link: 'docs',
-        },
-        {
-          title: 'Status',
-          link: 'home',
-        },
-        {
-          title: 'Community',
-          link: 'community',
-        },
-      ]}/>
+      <Navbar
+        primaryLink={{
+          title: 'Login',
+          link: '/login',
+        }}
+        secondaryLink={{
+          title: 'Register',
+          link: '/register',
+        }}
+        links={[
+          {
+            title: 'Home',
+            link: 'home',
+          },
+          {
+            title: 'Docs',
+            link: 'docs',
+          },
+          {
+            title: 'Status',
+            link: 'home',
+          },
+          {
+            title: 'Community',
+            link: 'community',
+          },
+        ]}
+      />
 
-      <Outlet/>
+      <Outlet />
     </>
   );
 };
