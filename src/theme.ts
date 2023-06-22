@@ -1,19 +1,26 @@
 import { extendTheme } from '@chakra-ui/react';
+import '@fontsource/inter';
+import '@fontsource/jua';
 
 export const themeExtensions = {
   colors: {
     brand: {
-      black: '#1A202D',
+      bg: '#344549',
       light_black: '#303642',
       purple: '#9C80FF',
-      green: '#00B570',
+      green: '#5e7140',
       red: '#FF6363',
+      yellow: '#F2EFBF',
     },
+  },
+  fonts: {
+    heading: "'Jua', sans-serif",
+    body: "'Inter', sans-serif",
   },
   styles: {
     global: {
       body: {
-        bg: 'brand.black',
+        bg: 'brand.bg',
         color: 'white',
       },
     },
