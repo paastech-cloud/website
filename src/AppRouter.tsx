@@ -1,49 +1,28 @@
-import { createBrowserRouter, createRoutesFromElements, Outlet, Route } from 'react-router-dom';
-import { Navbar } from '@components/Navbar';
+import { createBrowserRouter } from 'react-router-dom';
+import { Root } from '@pages/Root';
+import { HomePage } from '@pages/HomePage';
+import { LoginPage } from '@pages/LoginPage';
+import { RegisterPage } from '@pages/RegisterPage';
 
 export const AppRouter = () => {
-  return createBrowserRouter(
-    createRoutesFromElements(
-      <Route>
-        <Route path={'/'} element={<AppLayout />}></Route>
-      </Route>,
-    ),
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <Navbar
-        primaryLink={{
-          title: 'Login',
-          link: '/login',
-        }}
-        secondaryLink={{
-          title: 'Register',
-          link: '/register',
-        }}
-        links={[
-          {
-            title: 'Home',
-            link: 'home',
-          },
-          {
-            title: 'Docs',
-            link: 'docs',
-          },
-          {
-            title: 'Status',
-            link: 'home',
-          },
-          {
-            title: 'Community',
-            link: 'community',
-          },
-        ]}
-      />
-
-      <Outlet />
-    </>
-  );
+  return createBrowserRouter([
+    {
+      path: '/',
+      element: <Root />,
+      children: [
+        {
+          path: '/',
+          element: <HomePage />,
+        },
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
+        {
+          path: 'register',
+          element: <RegisterPage />,
+        },
+      ],
+    },
+  ]);
 };
