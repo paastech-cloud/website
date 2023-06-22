@@ -20,14 +20,15 @@ export const NavLink = (props: NavLinkProps) => (
     rounded={'md'}
     fontWeight={'bold'}
     fontSize={'xl'}
+    variant={props.variant}
+    bg={props.bg}
     _hover={{
       textDecoration: 'none',
       color: useColorModeValue('dark', 'dark'),
-      bg: useColorModeValue('green.500', 'green.500'),
+      bg: useColorModeValue('red.300', 'red.300'),
+      shadow: 'md',
     }}
     css={linkCss}
-    variant={props.variant}
-    bg={props.bg}
   >
     {props.title}
   </Link>
@@ -37,7 +38,7 @@ const linkCss = css`
   text-transform: capitalize;
   padding: 7px 15px;
 
-  :hover {
-    filter: drop-shadow(0 0 1rem #42b883aa);
-  }
+  //:hover {
+  //  filter: drop-shadow(0 0 1rem #42b883aa);
+  //}
 `;
