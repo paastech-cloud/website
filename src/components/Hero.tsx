@@ -1,4 +1,4 @@
-import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react';
+import { Button, Container, Heading, Stack, Text, Box } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { BiBook } from 'react-icons/bi';
@@ -8,7 +8,7 @@ import '@assets/fonts/font-orbit.css';
 
 export const Hero = () => {
   return (
-    <Container maxW={'6xl'} paddingInline={'0'} css={containerCss}>
+    <Container maxW={'8xl'} paddingInline={'0'} css={containerCss}>
       <div css={leftColumnCss}>
         <Heading fontSize={{ base: '3xl', sm: '4xl', lg: '6rem' }}>
           <Text
@@ -61,37 +61,37 @@ export const Hero = () => {
         </Stack>
       </div>
 
-      <div css={logoCss}>
+      <Box css={rightColumnCss}>
         <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
           <PaastechLogo />
         </motion.div>
-      </div>
+      </Box>
     </Container>
   );
 };
-
 const containerCss = css`
   flex: 1;
   display: flex;
   flex-flow: row wrap;
   align-items: start;
   justify-content: space-between;
+  width: 100%;
 `;
 
-const spacing = css`
-  transform: translateY(150px);
+const spacingY = css`
+  transform: translateY(150px); /* Increased translateY value */
 `;
 
 const leftColumnCss = css`
-  ${spacing};
+  ${spacingY};
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   padding: 30px;
 `;
 
-const logoCss = css`
-  ${spacing};
+const rightColumnCss = css`
+  ${spacingY};
   height: auto;
   width: 400px;
   filter: drop-shadow(0px 6px 7px rgba(50, 50, 93, 0.3));
