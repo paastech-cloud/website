@@ -2,8 +2,8 @@ import { Heading, HStack } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { NavLink } from '@components/NavLink';
-import { ReactComponent as PaastechLogo } from '@/assets/logo.svg';
 import { LinkType } from '@/typings/link.type';
+import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
 
 type NavbarProps = {
   links: LinkType[];
@@ -17,7 +17,7 @@ export const Navbar = (props: NavbarProps) => {
       <RouterLink to={'/'}>
         <HStack spacing={4} alignItems={'center'}>
           <PaastechLogo height={50} />
-          <Heading color={'brand.yellow'}>PaaSTech</Heading>
+          <Heading color={'white'}>PaaSTech</Heading>
         </HStack>
       </RouterLink>
 

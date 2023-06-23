@@ -1,87 +1,116 @@
 import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import { ReactComponent as PaastechLogo } from '@/assets/logo.svg';
 import { BiBook } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
+import { Cloud } from '@components/Cloud';
+import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
+import '@assets/fonts/font-orbit.css';
 
 export const Hero = () => {
   return (
-    <Container maxW={'7xl'} paddingInline={'0'} css={containerCss}>
-      <div css={rightColumnCss}>
-        <Heading fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
-          <Text
-            as={'span'}
-            position={'relative'}
-            _after={{
-              content: "''",
-              width: 'full',
-              height: '30%',
-              position: 'absolute',
-              bottom: 1,
-              left: 0,
-              bg: 'brand.red',
-              zIndex: -1,
-            }}
-            fontWeight={'black'}
-            color={'brand.yellow'}
-            px={2}
-          >
-            PaaSTech
+    <>
+      <div css={cloudContainer}>
+        <Cloud x={10} y={30} />
+        <Cloud x={67} y={15} />
+        <Cloud x={80} y={67} />
+      </div>
+
+      <Container maxW={'6xl'} paddingInline={'0'} css={containerCss}>
+        <div css={leftColumnCss}>
+          <Heading fontSize={{ base: '3xl', sm: '4xl', lg: '6rem' }}>
+            <Text
+              as={'span'}
+              position={'relative'}
+              _after={{
+                content: "''",
+                width: 'full',
+                height: '25%',
+                position: 'absolute',
+                bottom: 1,
+                left: 0,
+                bg: 'brand.red',
+                zIndex: -1,
+              }}
+              fontWeight={'black'}
+              color={'white'}
+              px={2}
+            >
+              PaaSTech
+            </Text>
+          </Heading>
+
+          <Text as={'span'} fontFamily={'Orbit'} fontSize={30}>
+            Code, Eat, Deploy, Sleep
           </Text>
-        </Heading>
 
-        <Text as={'span'} fontWeight={'bold'} fontSize={28}>
-          Code, Eat, Deploy, Sleep
-        </Text>
+          <Text fontSize={18} maxWidth={'430px'}>
+            PaasTech is the simplest PaaS you could ever dream of 💫
+          </Text>
 
-        <Text fontSize={18} maxWidth={'430px'}>
-          PaasTech is the simplest PaaS you could ever dream of 💫
-        </Text>
+          <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
+            <Button rounded={'lg'} size={'lg'} px={6} fontWeight={'normal'} color={'white'} bg={'brand.red'} _hover={{ bg: 'red.500' }} shadow={'md'}>
+              Getting Started
+            </Button>
+            <Button
+              as={RouterLink}
+              to={'https://paastech-cloud.github.io/docs'}
+              rounded={'lg'}
+              size={'lg'}
+              px={6}
+              fontWeight={'normal'}
+              color={'brand.red'}
+              bg={'white'}
+              leftIcon={<BiBook />}
+              shadow={'md'}
+            >
+              Documentation
+            </Button>
+          </Stack>
+        </div>
 
-        <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
-          <Button rounded={'lg'} size={'lg'} px={6} fontWeight={'normal'} color={'white'} bg={'brand.red'} _hover={{ bg: 'red.500' }} shadow={'md'}>
-            Get Started
-          </Button>
-          <Button
-            as={RouterLink}
-            to={'https://paastech-cloud.github.io/docs'}
-            rounded={'lg'}
-            size={'lg'}
-            px={6}
-            fontWeight={'normal'}
-            color={'brand.red'}
-            bg={'white'}
-            leftIcon={<BiBook />}
-            shadow={'md'}
-          >
-            Documentation
-          </Button>
-        </Stack>
-      </div>
-
-      <div css={logoCss}>
-        <PaastechLogo />
-      </div>
-    </Container>
+        <div css={logoCss}>
+          <PaastechLogo />
+        </div>
+      </Container>
+    </>
   );
 };
 
 const containerCss = css`
+  flex: 1;
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 10rem;
+  align-items: start;
+  justify-content: space-between;
 `;
 
-const rightColumnCss = css`
+const spacing = css`
+  transform: translateY(150px);
+`;
+
+const leftColumnCss = css`
+  ${spacing};
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  padding-bottom: 20px;
+  padding-top: 35px;
 `;
 
 const logoCss = css`
+  ${spacing};
   height: auto;
   width: 400px;
+  filter: drop-shadow(0px 6px 12px -1px rgba(50, 50, 93, 0.25)) drop-shadow(0px 3px 7px -3px rgba(0, 0, 0, 0.3));
+`;
+
+const cloudContainer = css`
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 150px);
+  z-index: -1;
+
+  @media (max-width: 1400px) {
+    display: none;
+  }
 `;

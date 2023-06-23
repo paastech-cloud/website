@@ -1271,11 +1271,6 @@
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.0.3.tgz#30a1c0b974e29d72eddaec0c45655597ffa0bf80"
   integrity sha512-JJvh5xht71F6e0E5r2+Ffu8g+CYAxMvnGJm9ZMg5IIjy8UwxLp+8C99TgPJupdEyBpEJv0wuMG2Rd183z/bV8g==
 
-"@fontsource/jua@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/jua/-/jua-5.0.3.tgz#5ba7274c9db76f275aa61c8a69aca45efe7e0dd0"
-  integrity sha512-PvaniVdowd52+E4u4keT0n/x7R1Naqc37yVHQ7s/OvCjEFGXBZnnT23e+lU9OwKvSQfgwZw+k6j1wdtRQ1Ewjg==
-
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.10.tgz#5a3ffe32cc9306365fb3fd572596cd602d5e12d2"

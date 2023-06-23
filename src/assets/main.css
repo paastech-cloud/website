@@ -1,3 +1,5 @@
+@import "styles/keyframes.css";
+
 :root {
   font-size: 14px;
 
@@ -16,8 +18,16 @@ body {
 #app {
   min-height: 100vh;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   margin: 45px;
+}
+
+main {
+  flex: 1;
+  display: flex!important;
+  flex-direction: column;
 }
