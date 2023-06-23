@@ -7,7 +7,7 @@ type CloudProps = {
 
 export const Cloud = (props: CloudProps) => {
   const cloudsCss = css`
-    ${cloudAnimation};
+    ${cloudShape};
     position: absolute;
     bottom: ${props.y}%;
     left: ${props.x}%;
@@ -23,8 +23,7 @@ export const Cloud = (props: CloudProps) => {
   );
 };
 
-const cloudAnimation = css`
-  animation: clouds 60s infinite linear;
+const cloudShape = css`
   border-radius: 10px;
   margin: 30px 0 0 0;
 
