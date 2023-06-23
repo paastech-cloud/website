@@ -1,7 +1,7 @@
 import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import { BiBook } from 'react-icons/bi';
 import { Link as RouterLink } from 'react-router-dom';
+import { BiBook } from 'react-icons/bi';
 import { Cloud } from '@components/Cloud';
 import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
 import '@assets/fonts/font-orbit.css';
@@ -10,11 +10,10 @@ export const Hero = () => {
   return (
     <>
       <div css={cloudContainer}>
-        <Cloud x={10} y={30} />
-        <Cloud x={67} y={15} />
-        <Cloud x={80} y={67} />
+        <Cloud x={10} y={15} />
+        <Cloud x={70} y={20} />
+        <Cloud x={80} y={68} />
       </div>
-
       <Container maxW={'6xl'} paddingInline={'0'} css={containerCss}>
         <div css={leftColumnCss}>
           <Heading fontSize={{ base: '3xl', sm: '4xl', lg: '6rem' }}>
@@ -93,14 +92,7 @@ const leftColumnCss = css`
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  padding-top: 35px;
-`;
-
-const logoCss = css`
-  ${spacing};
-  height: auto;
-  width: 400px;
-  filter: drop-shadow(0px 6px 12px -1px rgba(50, 50, 93, 0.25)) drop-shadow(0px 3px 7px -3px rgba(0, 0, 0, 0.3));
+  padding: 30px;
 `;
 
 const cloudContainer = css`
@@ -109,8 +101,12 @@ const cloudContainer = css`
   width: 100%;
   height: calc(100% - 150px);
   z-index: -1;
+`;
 
-  @media (max-width: 1400px) {
-    display: none;
-  }
+const logoCss = css`
+  ${spacing};
+  cursor: pointer;
+  height: auto;
+  width: 400px;
+  filter: drop-shadow(0px 6px 7px rgba(50, 50, 93, 0.3));
 `;

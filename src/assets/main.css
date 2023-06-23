@@ -29,3 +29,7 @@ main {
   display: flex!important;
   flex-direction: column;
 }
+
+@keyframes move{
+  50% { transform: translateY(50px) scale(10); }
+}
