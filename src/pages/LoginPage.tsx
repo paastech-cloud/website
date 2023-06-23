@@ -1,4 +1,5 @@
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
+import { Link as LinkRouter } from 'react-router-dom';
 
 export const LoginPage = () => {
   return (
@@ -21,7 +22,9 @@ export const LoginPage = () => {
               <Stack spacing={10}>
                 <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
                   <Checkbox>Remember me</Checkbox>
-                  <Link color={'brand.red'}>Forgot password?</Link>
+                  <Link as={LinkRouter} to={'/password-recovery'} color={'brand.red'}>
+                    Forgot password?
+                  </Link>
                 </Stack>
                 <Button
                   bg={'brand.red'}
