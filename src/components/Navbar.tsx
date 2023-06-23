@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { NavLink } from '@components/NavLink';
 import { LinkType } from '@/typings/link.type';
+import { motion } from 'framer-motion';
 import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
 
 type NavbarProps = {
@@ -15,10 +16,12 @@ export const Navbar = (props: NavbarProps) => {
   return (
     <div css={containerCss}>
       <RouterLink to={'/'}>
-        <HStack spacing={4} alignItems={'center'}>
-          <PaastechLogo height={50} />
-          <Heading color={'white'}>PaaSTech</Heading>
-        </HStack>
+        <motion.div whileTap={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
+          <HStack spacing={4} alignItems={'center'}>
+            <PaastechLogo height={50} />
+            <Heading color={'white'}>PaaSTech</Heading>
+          </HStack>
+        </motion.div>
       </RouterLink>
 
       <HStack as={'nav'} align={'center'} spacing={4} display={{ base: 'none', md: 'none', lg: 'flex' }}>

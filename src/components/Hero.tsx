@@ -2,6 +2,7 @@ import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { BiBook } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 import { Cloud } from '@components/Cloud';
 import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
 import '@assets/fonts/font-orbit.css';
@@ -68,7 +69,9 @@ export const Hero = () => {
         </div>
 
         <div css={logoCss}>
-          <PaastechLogo />
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
+            <PaastechLogo />
+          </motion.div>
         </div>
       </Container>
     </>
@@ -105,7 +108,6 @@ const cloudContainer = css`
 
 const logoCss = css`
   ${spacing};
-  cursor: pointer;
   height: auto;
   width: 400px;
   filter: drop-shadow(0px 6px 7px rgba(50, 50, 93, 0.3));
