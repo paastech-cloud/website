@@ -1,3 +1,4 @@
+import { getRandom } from '@/helper/getRandom';
 import { css } from '@emotion/react';
 
 type CloudProps = {
@@ -6,10 +7,10 @@ type CloudProps = {
 };
 
 export const Cloud = (props: CloudProps) => {
-  const value = Math.floor(Math.random() * 5) + 6;
+  const baseSize = getRandom(7, 10);
 
   const cloudsCss = css`
-    ${cloudShape(value)};
+    ${cloudShape(baseSize)};
     position: absolute;
     bottom: ${props.y}%;
     left: ${props.x}%;
@@ -25,15 +26,15 @@ export const Cloud = (props: CloudProps) => {
   );
 };
 
-const cloudShape = (value: number) => css`
-  animation: move ${value}s ease-in-out infinite;
+const cloudShape = (baseSize: number) => css`
+  animation: move ${baseSize * 2}s ease-in-out infinite; // Adjust the multiplication factor here
   border-radius: 10px;
   margin: 30px 0 0 0;
 
   width: 60px;
   height: 10px;
   aspect-ratio: 54 / 5;
-  transform: scale(10);
+  transform: scale(${baseSize});
 
   background: #f7e7eb;
 
