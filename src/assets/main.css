@@ -1,0 +1,37 @@
+:root {
+  font-size: 14px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  min-height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  margin: 45px;
+}
+
+main {
+  flex: 1;
+  display: flex !important;
+  flex-direction: column;
+}
+
+@keyframes move {
+  50% {
+    transform: translateY(50px) scale(10);
+  }
+}
