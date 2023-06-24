@@ -18,7 +18,6 @@ export default function ErrorPage() {
 
         <NavLink title="Go home" link="/" variant={'solid'} bg={'brand.red'} />
       </Box>
-      <CloudsContainer />
     </Box>
   );
 }
