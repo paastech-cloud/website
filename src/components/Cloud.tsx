@@ -7,10 +7,8 @@ type CloudProps = {
 };
 
 export const Cloud = (props: CloudProps) => {
-  const baseSize = getRandom(7, 10);
-
   const cloudsCss = css`
-    ${cloudShape(baseSize)};
+    ${cloudShape()};
     position: absolute;
     bottom: ${props.y}%;
     left: ${props.x}%;
@@ -26,15 +24,15 @@ export const Cloud = (props: CloudProps) => {
   );
 };
 
-const cloudShape = (baseSize: number) => css`
-  animation: move ${baseSize * 2}s ease-in-out infinite; // Adjust the multiplication factor here
+const cloudShape = () => css`
+  animation: move ${getRandom(5, 7)}s ease-in-out infinite;
   border-radius: 10px;
   margin: 30px 0 0 0;
 
   width: 60px;
   height: 10px;
   aspect-ratio: 54 / 5;
-  transform: scale(${baseSize});
+  transform: scale(10);
 
   background: #f7e7eb;
 
