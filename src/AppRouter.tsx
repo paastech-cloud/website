@@ -9,6 +9,7 @@ export const AppRouter = () => {
   return createBrowserRouter([
     {
       path: '/',
+      errorElement: <ErrorPage />,
       element: <Root />,
       children: [
         {
@@ -22,10 +23,6 @@ export const AppRouter = () => {
         {
           path: 'register',
           element: <RegisterPage />,
-        },
-        {
-          path: '*',
-          element: <ErrorPage />,
         },
       ],
     },
