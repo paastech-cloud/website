@@ -7,6 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
@@ -20,7 +21,11 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "off",
-    "react-refresh/only-export-components": "warn"
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
+    "react/no-unknown-property": "off",
+    "react-refresh/only-export-components": "warn",
+    "react/jsx-curly-brace-presence": ["error", {"props": "always", "children": "never"}]
   }
 }
