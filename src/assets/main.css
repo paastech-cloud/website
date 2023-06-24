@@ -26,10 +26,12 @@ header {
 
 main {
   flex: 1;
-  display: flex!important;
+  display: flex !important;
   flex-direction: column;
 }
 
-@keyframes move{
-  50% { transform: translateY(50px) scale(10); }
+@keyframes move {
+  50% {
+    transform: translateY(50px) scale(10);
+  }
 }
