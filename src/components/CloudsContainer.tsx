@@ -1,12 +1,13 @@
+import { getRandom } from '@/helper/getRandom';
 import { Cloud } from '@components/Cloud';
 import { css } from '@emotion/react';
 
 export const CloudsContainer = () => {
   return (
     <div css={cloudContainer}>
-      <Cloud x={10} y={15} />
-      <Cloud x={70} y={20} />
-      <Cloud x={80} y={68} />
+      <Cloud x={getRandom(10, 15)} y={getRandom(12, 14)} />
+      <Cloud x={getRandom(65, 80)} y={getRandom(15, 20)} />
+      <Cloud x={getRandom(75, 85)} y={getRandom(65, 70)} />
     </div>
   );
 };
