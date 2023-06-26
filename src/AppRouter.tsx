@@ -28,5 +28,15 @@ export const AppRouter = () => {
         },
       ],
     },
+    {
+      path: '/dashboard',
+      element: <RootDashboard />,
+      children: [
+        {
+          path: '/dashboard',
+          element: <DashboardHomePage />,
+        },
+      ],
+    },
   ]);
 };
