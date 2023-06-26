@@ -20,6 +20,7 @@ export const themeExtensions = {
       red: '#FF6363',
       yellow: '#F2EFBF',
       border_gray: '#e1e4ef',
+      bg_gray: '#f8f9fc',
     },
   },
   fonts: {

@@ -22,5 +22,5 @@ const headerCss = css`
 `;
 
 const mainCss = css`
-  background-color: #fff;
+  background-color: ${themeExtensions.colors.brand.bg_gray};
 `;
