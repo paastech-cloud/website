@@ -1,28 +1,20 @@
-import { Heading, HStack } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { HStack } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { NavLink } from '@components/NavLink';
 import { LinkType } from '@/typings/link.type';
-import { motion } from 'framer-motion';
-import { ReactComponent as PaastechLogo } from '@assets/images/logo.svg';
+import { NavbarLogo } from '@components/navbar/NavbarLogo';
 
 type NavbarProps = {
-  links: LinkType[];
+  logoLink: LinkType;
   primaryLink: LinkType;
   secondaryLink: LinkType;
+  links: LinkType[];
 };
 
 export const Navbar = (props: NavbarProps) => {
   return (
     <div css={containerCss}>
-      <RouterLink to={'/'}>
-        <motion.div whileTap={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
-          <HStack spacing={4} alignItems={'center'}>
-            <PaastechLogo height={50} />
-            <Heading color={'white'}>PaaSTech</Heading>
-          </HStack>
-        </motion.div>
-      </RouterLink>
+      <NavbarLogo link={props.logoLink} />
 
       <HStack as={'nav'} align={'center'} spacing={4} display={{ base: 'none', md: 'none', lg: 'flex' }}>
         {props.links.map((items, i) => (
