@@ -6,6 +6,7 @@ export const Root = () => {
     <>
       <header>
         <Navbar
+          logoLink={{ title: 'PaaSTech', link: '/' }}
           primaryLink={{
             title: 'Login',
             link: '/login',
