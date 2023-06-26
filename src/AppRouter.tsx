@@ -1,8 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { Root } from '@pages/Root';
-import { HomePage } from '@pages/HomePage';
-import { LoginPage } from '@pages/LoginPage';
-import { RegisterPage } from '@pages/RegisterPage';
+import { createHashRouter } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage';
 import { Root as RootDashboard } from '@pages/dashboard/Root';
 import { Root as HomeRoot } from '@pages/homepage/Root';
@@ -12,7 +8,7 @@ import { RegisterPage } from '@pages/homepage/RegisterPage';
 import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 
 export const AppRouter = () => {
-  return createBrowserRouter([
+  return createHashRouter([
     {
       path: '/',
       errorElement: <ErrorPage />,
