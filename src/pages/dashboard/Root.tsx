@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { NavbarLogged } from '@components/NavbarLogged';
 import { css } from '@emotion/react';
+import { NavbarLogged } from '@components/NavbarLogged';
 import { themeExtensions } from '@/theme';
 
 export const Root = () => {
   return (
     <>
-      <header className={'logged'} css={headerCss}>
+      <header css={headerCss}>
         <NavbarLogged logoLink={{ title: 'PaaSTech', link: '/dashboard' }} />
       </header>
 
