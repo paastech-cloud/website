@@ -1,5 +1,6 @@
 import { Box, Card, CardBody, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
+import { ProjectList } from '@components/dashboard/ProjectList';
 
 export const DashboardHomePage = () => {
   return (
@@ -10,7 +11,7 @@ export const DashboardHomePage = () => {
         <HStack justifyContent={'space-between'} borderBottom={'1px'} borderColor={'brand.border_gray'} p={'1.5rem'}>
           <Heading color={'gray.700'}>Projects</Heading>
         </HStack>
-        <ul></ul>
+        <ProjectList />
       </Flex>
 
       <Box as={'aside'} flexBasis={'20rem'} pt={'2rem'} px={'2rem'} display={{ base: 'none', lg: 'block' }}>
