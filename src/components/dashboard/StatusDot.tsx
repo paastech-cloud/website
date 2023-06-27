@@ -9,8 +9,11 @@ export const StatusDot = (props: StatusDotProps) => {
   let dot = null;
 
   switch (props.status) {
+    case 'created':
+      dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={'gray.500'} rounded={'full'} cursor={'pointer'}></Box>;
+      break;
     case 'pending':
-      dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={'blue.500'} rounded={'full'} cursor={'pointer'}></Box>;
+      dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={'orange.500'} rounded={'full'} cursor={'pointer'}></Box>;
       break;
     case 'running':
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={'green.500'} rounded={'full'} cursor={'pointer'}></Box>;
