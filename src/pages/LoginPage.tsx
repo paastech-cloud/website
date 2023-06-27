@@ -6,8 +6,11 @@ import { LoginFormType } from '@/typings/form.type';
 
 export const LoginPage = () => {
   const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Email is required'),
-    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
+    email: Yup.string().email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters')
+      .max(255, 'Password must be at most 255 characters'),
   });
 
   const handleSubmit = (values: LoginFormType) => {
