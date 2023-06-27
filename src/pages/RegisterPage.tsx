@@ -1,4 +1,5 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
+import { RegisterFormType } from '@/typings/form.type';
+import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -13,9 +14,9 @@ export const RegisterPage = () => {
       .required('Confirm Password is required'),
   });
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: RegisterFormType) => {
     // Handle form submission here
-    console.log('asdasd, ', values);
+    console.log(values);
   };
 
   return (
