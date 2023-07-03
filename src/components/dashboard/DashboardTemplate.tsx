@@ -33,7 +33,7 @@ export const DashboardTemplate = (props: DashboardTemplateProps) => {
           <BreadcrumbsDashboard breadcrumbs={breadcrumbs} />
           <Card rounded={'lg'} flex={1} w={'full'} p={8}>
             <Flex flex={'1'} flexDirection={'column'} bgColor={'white'}>
-              <HStack justifyContent={'space-between'} borderBottom={'1px'} borderColor={'brand.border_gray'} pb={6} pl={4}>
+              <HStack justifyContent={'space-between'} borderBottom={'1px'} borderColor={'brand.border_gray'} pb={6}>
                 <Heading color={'gray.700'}>{props.pageTitle}</Heading>
               </HStack>
               {props.children}

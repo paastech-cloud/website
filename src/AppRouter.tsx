@@ -39,7 +39,19 @@ export const AppRouter = () => {
         },
         {
           path: '/dashboard/:projectId',
-          element: <DashboardDetails />,
+          element: <DashboardDetails tabTitle={'Overview'} />,
+        },
+        {
+          path: '/dashboard/:projectId/logs',
+          element: <DashboardDetails tabTitle={'Logs'} tabSlug={'/logs'} />,
+        },
+        {
+          path: '/dashboard/:projectId/env',
+          element: <DashboardDetails tabTitle={'Environment'} tabSlug={'/env'} />,
+        },
+        {
+          path: '/dashboard/:projectId/settings',
+          element: <DashboardDetails tabTitle={'Settings'} tabSlug={'/settings'} />,
         },
       ],
     },

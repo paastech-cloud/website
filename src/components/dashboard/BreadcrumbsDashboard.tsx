@@ -9,7 +9,7 @@ type BreadcrumbDashboardProps = {
 
 export const BreadcrumbsDashboard = ({ breadcrumbs }: BreadcrumbDashboardProps) => {
   return (
-    <Breadcrumb w={'full'} pl={8} spacing={1} separator={<ChevronRightIcon boxSize={5} color={'gray.500'} />}>
+    <Breadcrumb w={'full'} pl={{ base: 4, lg: 0 }} spacing={1} separator={<ChevronRightIcon boxSize={5} color={'gray.500'} />}>
       {breadcrumbs.map((bread, i) => {
         const isLastItem = i === breadcrumbs.length - 1;
 
