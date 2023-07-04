@@ -29,7 +29,7 @@ export const DashboardTemplate = (props: DashboardTemplateProps) => {
         </VStack>
 
         {/* Main content */}
-        <VStack flex={1} spacing={8}>
+        <VStack flex={1} spacing={8} overflowX={'clip'}>
           <BreadcrumbsDashboard breadcrumbs={breadcrumbs} />
           <Card rounded={'lg'} flex={1} w={'full'} p={8}>
             <Flex flex={'1'} flexDirection={'column'} bgColor={'white'}>

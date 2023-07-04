@@ -31,3 +31,10 @@ main {
     transform: translateY(50px) scale(10);
   }
 }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  line-height: 20px;
+  font-size: 14px;
+  tab-size: 2;
+}
