@@ -3,13 +3,14 @@ import { Text } from '@chakra-ui/react';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { BreadcrumbType } from '@/typings/link.type';
+import { ProjectStatus, ProjectType } from '@/typings/project.type';
 
 const appDetail: ProjectType = {
   uuid: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
-  status: 'created',
-  name: 'my-fancy-go-app',
-  latestDeployment: 'f421210',
-  lastUpdate: '6 hours ago',
+  status: ProjectStatus.STOPPED,
+  name: 'my-fancy-nestjs-app',
+  currentDeployment: 'f421210',
+  lastActivity: '6 hours ago',
 };
 
 type DashboardDetailsProps = {

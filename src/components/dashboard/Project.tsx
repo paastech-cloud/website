@@ -22,8 +22,8 @@ export const Project = (props: ProjectProps) => {
       cursor={'pointer'}
     >
       <Flex justifyContent={'end'}>
-        <Tooltip label={'Latest deployment'} rounded={'md'}>
-          <Text color={'gray.500'}>{props.project.latestDeployment}</Text>
+        <Tooltip label={'Current deployment'} rounded={'md'}>
+          <Text color={'gray.500'}>{props.project.currentDeployment}</Text>
         </Tooltip>
       </Flex>
 
@@ -35,10 +35,10 @@ export const Project = (props: ProjectProps) => {
       </Flex>
 
       <Flex justifyContent={'end'}>
-        <Tooltip label={'Last update'} rounded={'md'}>
+        <Tooltip label={'Last activity'} rounded={'md'}>
           <HStack>
             <RxCounterClockwiseClock />
-            <Text color={'gray.500'}>{props.project.lastUpdate}</Text>
+            <Text color={'gray.500'}>{props.project.lastActivity}</Text>
           </HStack>
         </Tooltip>
       </Flex>

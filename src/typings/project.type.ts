@@ -1,9 +1,16 @@
 export type ProjectType = {
   uuid: string;
-  status: ProjectStatusType;
+  status: ProjectStatus;
   name: string;
-  latestDeployment: string;
-  lastUpdate: string;
+  currentDeployment: string;
+  lastActivity: string;
 };
 
-export type ProjectStatusType = 'created' | 'pending' | 'running' | 'exited';
+export enum ProjectStatus {
+  UNKNOWN = 'unknown',
+  NO_DEPLOYMENT = 'no deployment',
+  STARTING = 'starting',
+  RUNNING = 'running',
+  STOPPING = 'stopping',
+  STOPPED = 'stopped',
+}
