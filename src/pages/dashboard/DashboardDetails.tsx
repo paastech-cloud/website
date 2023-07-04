@@ -4,7 +4,7 @@ import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { BreadcrumbType } from '@/typings/link.type';
 
-const appDetail = {
+const appDetail: ProjectType = {
   uuid: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
   status: 'created',
   name: 'my-fancy-go-app',
