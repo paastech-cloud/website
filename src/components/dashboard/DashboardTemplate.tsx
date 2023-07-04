@@ -32,7 +32,7 @@ export const DashboardTemplate = (props: DashboardTemplateProps) => {
         <VStack flex={1} spacing={8} overflowX={'clip'}>
           <BreadcrumbsDashboard breadcrumbs={breadcrumbs} />
           <Card rounded={'lg'} flex={1} w={'full'} p={8}>
-            <Flex flex={'1'} flexDirection={'column'} bgColor={'white'}>
+            <Flex flex={'1'} flexDirection={'column'} gap={6} bgColor={'white'}>
               <HStack justifyContent={'space-between'} borderBottom={'1px'} borderColor={'brand.border_gray'} pb={6}>
                 <Heading color={'gray.700'}>{props.pageTitle}</Heading>
               </HStack>
