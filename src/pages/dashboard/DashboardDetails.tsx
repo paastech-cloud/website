@@ -1,5 +1,8 @@
 import { useMemo } from 'react';
-import { Text } from '@chakra-ui/react';
+import { OverviewTab } from '@pages/dashboard/project-details/OverviewTab';
+import { LogsTab } from '@pages/dashboard/project-details/LogsTab';
+import { EnvironmentTab } from '@pages/dashboard/project-details/EnvironmentTab';
+import { SettingsTab } from '@pages/dashboard/project-details/SettingsTab';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { BreadcrumbType } from '@/typings/link.type';
@@ -35,29 +38,13 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
       case '/logs':
-        return (
-          <Text as={'p'} fontSize={30} mt={10}>
-            Logs...
-          </Text>
-        );
+        return <LogsTab project={appDetail} />;
       case '/env':
-        return (
-          <Text as={'p'} fontSize={30} mt={10}>
-            Env...
-          </Text>
-        );
+        return <EnvironmentTab project={appDetail} />;
       case '/settings':
-        return (
-          <Text as={'p'} fontSize={30} mt={10}>
-            Settings...
-          </Text>
-        );
+        return <SettingsTab project={appDetail} />;
       default:
-        return (
-          <Text as={'p'} fontSize={30} mt={10}>
-            Overview...
-          </Text>
-        );
+        return <OverviewTab project={appDetail} />;
     }
   }, [props.tabSlug]);
 
