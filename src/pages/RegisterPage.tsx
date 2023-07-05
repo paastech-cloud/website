@@ -11,9 +11,7 @@ export const RegisterPage = () => {
       .min(3, 'Username must be at least 3 characters')
       .max(30, 'Username must be at most 30 characters')
       .matches(USERNAME_REGEX, 'Username must start with a letter and can only contain letters, digits and underscores'),
-    email: Yup.string()
-      .required('Email is required')
-      .email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
+    email: Yup.string().email('Invalid email address').max(100, 'Email must be at most 100 characters'),
     password: Yup.string()
       .required('Password is required')
       .min(8, 'Password must be at least 8 characters')

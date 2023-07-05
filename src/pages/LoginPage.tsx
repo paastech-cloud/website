@@ -3,19 +3,20 @@ import { Link as LinkRouter } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
+import { authApi } from '../api/api';
 
 export const LoginPage = () => {
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required('Email is required')
-      .email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
-    password: Yup.string()
-      .required('Password is required')
+    email: Yup.string().email('Invalid email address').max(100, 'Email must be at most 100 characters'),
+    password: Yup.string().required('Password is required'),
   });
 
   const handleSubmit = (values: LoginFormType) => {
     // Handle form submission here
     console.log('Form values:', values);
+    authApi.authControllerLogin(values).then((token) => {
+      console.log(token.data);
+    });
   };
 
   return (
