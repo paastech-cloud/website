@@ -1,6 +1,5 @@
-
-import axiosBackendClient, { axiosBaseUrl } from "./axios-client";
-import { AuthApi } from "./generated";
+import axiosBackendClient, { axiosBaseUrl } from './axios-client';
+import { AuthApi } from './generated';
 
 export const authApi = new AuthApi(
   {
@@ -8,5 +7,5 @@ export const authApi = new AuthApi(
     isJsonMime: () => false,
   },
   axiosBaseUrl,
-  axiosBackendClient
+  axiosBackendClient,
 );
