@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "openapi": "npx @openapitools/openapi-generator-cli generate -i ./openapi.json -g typescript-axios -o ./src/api/generated"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
@@ -16,16 +17,19 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/inter": "^5.0.3",
     "@swc/plugin-emotion": "^2.5.68",
+    "axios": "^1.4.0",
     "formik": "^2.4.2",
     "framer-motion": "^10.12.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
+    "react-query": "^3.39.3",
     "react-router": "^6.13.0",
     "react-router-dom": "^6.13.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.6.0",
     "@types/node": "^20.3.1",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
