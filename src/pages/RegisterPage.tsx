@@ -1,3 +1,4 @@
+import { PASSWORD_REGEX, USERNAME_REGEX } from '@/helper/constants';
 import { RegisterFormType } from '@/typings/form.type';
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -5,12 +6,19 @@ import * as Yup from 'yup';
 
 export const RegisterPage = () => {
   const validationSchema = Yup.object({
-    username: Yup.string().required('Username is required').max(40, 'Username must be at most 40 characters'),
-    email: Yup.string().email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
+    username: Yup.string()
+      .required('Username is required')
+      .min(3, 'Username must be at least 3 characters')
+      .max(30, 'Username must be at most 30 characters')
+      .matches(USERNAME_REGEX, 'Username must start with a letter and can only contain letters, digits and underscores'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
     password: Yup.string()
       .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(255, 'Password must be at most 255 characters'),
+      .min(8, 'Password must be at least 8 characters')
+      .max(255, 'Password must be at most 255 characters')
+      .matches(PASSWORD_REGEX, 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Passwords must match')
       .nullable()
