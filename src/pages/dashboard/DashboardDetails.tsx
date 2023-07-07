@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
+import { Badge, Flex } from '@chakra-ui/react';
 import { OverviewTab } from '@pages/dashboard/project-details/OverviewTab';
 import { LogsTab } from '@pages/dashboard/project-details/LogsTab';
 import { EnvironmentTab } from '@pages/dashboard/project-details/EnvironmentTab';
 import { SettingsTab } from '@pages/dashboard/project-details/SettingsTab';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
+import { StatusCard } from '@components/dashboard/StatusCard';
 import { BreadcrumbType } from '@/typings/link.type';
 import { ProjectStatus, ProjectType } from '@/typings/project.type';
 
@@ -36,6 +38,19 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
     return b;
   }, [props.tabTitle, props.tabSlug]);
 
+  const tabTitle = useMemo(() => {
+    if (undefined === props.tabTitle) return appDetail.name;
+
+    return (
+      <Flex alignItems={'end'} gap={3}>
+        <Badge p={2} rounded={'lg'} fontSize={'lg'} textTransform={'uppercase'}>
+          {props.tabTitle}
+        </Badge>
+        {appDetail.name}
+      </Flex>
+    );
+  }, [props.tabTitle]);
+
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
       case '/logs':
@@ -52,7 +67,8 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
   return (
     <DashboardTemplate
       breadcrumbs={breadcrumbs}
-      pageTitle={props.tabTitle ? `${props.tabTitle}: ${appDetail.name}` : appDetail.name}
+      rightToBreadcrumbs={<StatusCard status={appDetail.status} />}
+      pageTitle={tabTitle}
       leftSidebar={<Sidebar currentPath={`/dashboard/${appDetail.uuid}`} currentTab={props.tabSlug} />}
     >
       {tabContent}
