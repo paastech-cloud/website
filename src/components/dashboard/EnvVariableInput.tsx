@@ -17,7 +17,7 @@ export const EnvVariableInput = (props: EnvVariableInputProps) => {
   useEffect(() => {
     if (undefined === props.onChange) return;
     props.onChange(props.index, { envKey, value: envValue });
-  }, [envKey, envValue, props]);
+  }, [envKey, envValue, props.index]);
 
   const onChangeEnvKey = useCallback((e: ChangeEvent<HTMLInputElement>) => setEnvKey(e.target.value), []);
   const onChangeEnvValue = useCallback((e: ChangeEvent<HTMLInputElement>) => setEnvValue(e.target.value), []);
