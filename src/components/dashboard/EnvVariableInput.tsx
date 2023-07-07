@@ -27,7 +27,7 @@ export const EnvVariableInput = (props: EnvVariableInputProps) => {
       <Form>
         <FormControl>
           <HStack spacing={4}>
-            <Input autoComplete={'off'} required placeholder={'KEY (not empty)'} size={'lg'} value={envKey} onChange={onChangeEnvKey} />
+            <Input autoComplete={'off'} required placeholder={'KEY'} size={'lg'} value={envKey} onChange={onChangeEnvKey} />
             <Text as={'span'}>=</Text>
             <Input autoComplete={'off'} placeholder={'VALUE'} size={'lg'} value={envValue} onChange={onChangeEnvValue} />
 
