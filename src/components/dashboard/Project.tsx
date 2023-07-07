@@ -35,10 +35,10 @@ export const Project = (props: ProjectProps) => {
       </Flex>
 
       <Flex justifyContent={'end'}>
-        <Tooltip label={'Last activity'} rounded={'md'}>
+        <Tooltip label={'Last updated'} rounded={'md'}>
           <HStack>
             <RxCounterClockwiseClock />
-            <Text color={'gray.500'}>{props.project.lastActivity}</Text>
+            <Text color={'gray.500'}>{props.project.updatedAt}</Text>
           </HStack>
         </Tooltip>
       </Flex>

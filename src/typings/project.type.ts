@@ -3,7 +3,8 @@ export type ProjectType = {
   status: ProjectStatus;
   name: string;
   currentDeployment: string;
-  lastActivity: string;
+  updatedAt: string;
+  createdAt: string;
 };
 
 export enum ProjectStatus {
