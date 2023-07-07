@@ -7,10 +7,12 @@ import { BreadcrumbType } from '@/typings/link.type';
 
 type DashboardTemplateProps = {
   breadcrumbs?: BreadcrumbType[];
+  rightToBreadcrumbs?: ReactNode;
   pageTitle: ReactNode | string;
   children?: ReactNode;
   leftSidebar?: ReactNode;
   rightSidebar?: ReactNode;
+  disableSpacing?: boolean;
 };
 
 export const DashboardTemplate = (props: DashboardTemplateProps) => {
@@ -30,9 +32,12 @@ export const DashboardTemplate = (props: DashboardTemplateProps) => {
 
         {/* Main content */}
         <VStack flex={1} spacing={8} overflowX={'clip'}>
-          <BreadcrumbsDashboard breadcrumbs={breadcrumbs} />
+          <HStack w={'full'} justifyContent={'space-between'}>
+            <BreadcrumbsDashboard breadcrumbs={breadcrumbs} />
+            {props.rightToBreadcrumbs}
+          </HStack>
           <Card rounded={'lg'} flex={1} w={'full'} p={8}>
-            <Flex flex={'1'} flexDirection={'column'} gap={6} bgColor={'white'}>
+            <Flex flex={'1'} flexDirection={'column'} gap={props.disableSpacing ? undefined : 6} bgColor={'white'}>
               <HStack justifyContent={'space-between'} borderBottom={'1px'} borderColor={'brand.border_gray'} pb={6}>
                 <Heading color={'gray.700'}>{props.pageTitle}</Heading>
               </HStack>

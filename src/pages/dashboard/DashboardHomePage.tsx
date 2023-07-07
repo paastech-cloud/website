@@ -6,7 +6,7 @@ import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 
 export const DashboardHomePage = () => {
   return (
-    <DashboardTemplate pageTitle={'Projects'} rightSidebar={rightSidebar}>
+    <DashboardTemplate pageTitle={'Projects'} rightSidebar={rightSidebar} disableSpacing>
       <ProjectList />
     </DashboardTemplate>
   );
