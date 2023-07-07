@@ -2,7 +2,6 @@ export type ProjectType = {
   uuid: string;
   status: ProjectStatus;
   name: string;
-  currentDeployment: string;
   updatedAt: string;
   createdAt: string;
 };

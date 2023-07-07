@@ -25,8 +25,8 @@ export const OverviewTab = (props: ProjectDetailsTabProps) => {
         <VStack spacing={2} alignItems={'start'}>
           <Box>
             <Text as={'p'}>Hostname:</Text>
-            <Link href={`https://${props.project.currentDeployment}.user-app.paastech.cloud`} isExternal color={'brand.bg'} fontWeight={'bold'}>
-              {`${props.project.currentDeployment}.user-app.paastech.cloud`} <ExternalLinkIcon mx={'2px'} />
+            <Link href={`https://${props.project.uuid}.user-app.paastech.cloud`} isExternal color={'brand.bg'} fontWeight={'bold'}>
+              {`${props.project.uuid}.user-app.paastech.cloud`} <ExternalLinkIcon mx={'2px'} />
             </Link>
           </Box>
           <Text as={'p'}>
@@ -39,12 +39,6 @@ export const OverviewTab = (props: ProjectDetailsTabProps) => {
             Last updated:{' '}
             <Badge py={1} px={2} bg={'brand.bg'} color={'white'}>
               {props.project.updatedAt}
-            </Badge>
-          </Text>
-          <Text as={'p'}>
-            Current deployment:{' '}
-            <Badge py={1} px={2} bg={'brand.bg'} color={'white'}>
-              {props.project.currentDeployment}
             </Badge>
           </Text>
         </VStack>

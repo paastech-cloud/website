@@ -15,26 +15,20 @@ export const Project = (props: ProjectProps) => {
       to={`/dashboard/${props.project.uuid}`}
       flexFlow={'column nowrap'}
       justifyContent={'space-between'}
-      p={'1.5rem'}
+      px={6}
+      py={10}
       borderBottom={'1px'}
       borderColor={'brand.border_gray'}
       _hover={{ bg: 'brand.bg_gray' }}
       cursor={'pointer'}
     >
-      <Flex justifyContent={'end'}>
-        <Tooltip label={'Current deployment'} rounded={'md'}>
-          <Text color={'gray.500'}>{props.project.currentDeployment}</Text>
-        </Tooltip>
-      </Flex>
-
-      <Flex flexFlow={'row nowrap'} alignItems={'center'} columnGap={4}>
-        <StatusDot status={props.project.status} />
-        <Text color={'gray.600'} fontWeight={'semibold'} fontSize={'lg'}>
-          {props.project.name}
-        </Text>
-      </Flex>
-
-      <Flex justifyContent={'end'}>
+      <Flex flexDirection={'row'} justifyContent={'space-between'}>
+        <Flex alignItems={'center'} columnGap={4}>
+          <StatusDot status={props.project.status} />
+          <Text color={'gray.600'} fontWeight={'semibold'} fontSize={'lg'}>
+            {props.project.name}
+          </Text>
+        </Flex>
         <Tooltip label={'Last updated'} rounded={'md'}>
           <HStack>
             <RxCounterClockwiseClock />

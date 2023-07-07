@@ -14,7 +14,6 @@ const appDetail: ProjectType = {
   uuid: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
   status: ProjectStatus.STOPPED,
   name: 'my-fancy-nestjs-app',
-  currentDeployment: '0a3684db-e055-4716-86d7-ae4f1f71abb3',
   updatedAt: '6 hours ago',
   createdAt: '1 month ago',
 };
