@@ -9,9 +9,10 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
     <Box
       as={'code'}
       p={6}
-      overflowX={'scroll'}
+      overflow={'scroll'}
       w={'full'}
       h={'full'}
+      maxH={'500px'}
       whiteSpace={'pre'}
       color={'white'}
       backgroundColor={'gray.800'}

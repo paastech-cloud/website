@@ -18,5 +18,3 @@
 [Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/users/:id, DELETE} (version: 1) route +1ms
 [Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [NestApplication] Nest application successfully started +192ms
 Segmentation fault (core dumped)
-
-loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
