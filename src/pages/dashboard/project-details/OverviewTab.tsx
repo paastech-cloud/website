@@ -7,7 +7,7 @@ import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 
 export const OverviewTab = (props: ProjectDetailsTabProps) => {
   return (
-    <Flex flexDirection={'column'} alignItems={'start'} gap={4}>
+    <Flex flexDirection={'column'} alignItems={'start'} gap={6}>
       <SimpleCard heading={'Actions on app'}>
         <HStack w={'full'} spacing={6}>
           <Button colorScheme={'green'} leftIcon={<FaPlay size={17} />}>
