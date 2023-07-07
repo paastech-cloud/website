@@ -11,7 +11,7 @@ type LinkItemProps = {
   tab?: string;
 };
 
-const LinkItems: Array<LinkItemProps> = [
+const sidebarTabs: Array<LinkItemProps> = [
   { name: 'Overview', icon: <MdRadar size={18} /> },
   { name: 'Logs', icon: <FaScroll size={18} />, tab: '/logs' },
   { name: 'Environment', icon: <MdOutlineDocumentScanner size={18} />, tab: '/env' },
@@ -27,7 +27,7 @@ export const Sidebar = (props: SidebarProps) => {
   return (
     <Box mt={'50px'} pt={4} w={'full'}>
       <Flex flexDirection={'column'} alignItems={'center'} rowGap={10}>
-        {LinkItems.map((link, i) => (
+        {sidebarTabs.map((link, i) => (
           <NavItem
             key={i}
             icon={link.icon}
