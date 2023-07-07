@@ -3,8 +3,8 @@ import ErrorPage from './pages/ErrorPage';
 import { Root as RootDashboard } from '@pages/dashboard/Root';
 import { Root as HomeRoot } from '@pages/homepage/Root';
 import { HomePage } from '@pages/homepage/HomePage';
-import { LoginPage } from '@pages/auth/LoginPage';
-import { RegisterPage } from '@pages/auth/RegisterPage';
+import { LoginPage } from '@pages/LoginPage';
+import { RegisterPage } from '@pages/RegisterPage';
 import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
 
