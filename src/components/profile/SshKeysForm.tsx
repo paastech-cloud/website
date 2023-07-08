@@ -1,0 +1,51 @@
+import { Field, Form, Formik } from 'formik';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Stack, Textarea } from '@chakra-ui/react';
+import sshTextareaPlaceholder from '@assets/txt/ssh-textarea-placeholder.txt?raw';
+import * as Yup from 'yup';
+import { useCallback } from 'react';
+
+type SshKeysFormProps = {
+  onSubmit?: (name: string, value: string) => void;
+};
+
+export const SshKeysForm = (props: SshKeysFormProps) => {
+  const validationSchema = Yup.object({
+    title: Yup.string().required('A title for the key is required'),
+    publicKey: Yup.string().required('A value for the key is required'),
+  });
+
+  const onSubmitHandler = useCallback((values: { title: string; publicKey: string }) => {
+    if (props.onSubmit) props.onSubmit(values.title, values.publicKey);
+  }, []);
+
+  return (
+    <Formik
+      initialValues={{
+        title: '',
+        publicKey: '',
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmitHandler}
+    >
+      {({ handleSubmit, errors, touched }) => (
+        <Form onSubmit={handleSubmit}>
+          <Stack spacing={4} fontSize={'lg'} alignItems={'start'}>
+            <FormControl id={'title'} isInvalid={!!errors.title && touched.title}>
+              <FormLabel>Title</FormLabel>
+              <Field as={Input} name={'title'} maxW={'440px'} />
+              <FormErrorMessage>{errors.title}</FormErrorMessage>
+            </FormControl>
+            <FormControl id={'publicKey'} isInvalid={!!errors.publicKey && touched.publicKey}>
+              <FormLabel>Key</FormLabel>
+              <Field as={Textarea} name={'publicKey'} placeholder={sshTextareaPlaceholder} maxH={'200px'} />
+              <FormErrorMessage>{errors.publicKey}</FormErrorMessage>
+            </FormControl>
+            <Button colorScheme={'green'} type={'submit'}>
+              Add SSH key
+            </Button>
+          </Stack>
+        </Form>
+      )}
+    </Formik>
+  );
+};
