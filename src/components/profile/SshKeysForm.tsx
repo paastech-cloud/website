@@ -9,7 +9,7 @@ type SshKeysFormProps = {
 
 export const SshKeysForm = (props: SshKeysFormProps) => {
   const validationSchema = Yup.object({
-    title: Yup.string().required('A title for the key is required'),
+    title: Yup.string(),
     publicKey: Yup.string().required('A value for the key is required'),
   });
 
@@ -34,7 +34,7 @@ export const SshKeysForm = (props: SshKeysFormProps) => {
               <Field as={Input} name={'title'} maxW={'440px'} />
               <FormErrorMessage>{errors.title}</FormErrorMessage>
             </FormControl>
-            <FormControl id={'publicKey'} isInvalid={!!errors.publicKey && touched.publicKey}>
+            <FormControl id={'publicKey'} isInvalid={!!errors.publicKey && touched.publicKey} isRequired>
               <FormLabel>Key</FormLabel>
               <Field as={Textarea} name={'publicKey'} placeholder={sshTextareaPlaceholder} maxH={'200px'} />
               <FormErrorMessage>{errors.publicKey}</FormErrorMessage>

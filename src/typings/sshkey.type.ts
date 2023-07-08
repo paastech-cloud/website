@@ -1,6 +1,6 @@
 export type SshkeyType = {
   id?: string;
-  name: string;
+  name: string | null;
   value: string;
   createdAt?: string;
   updatedAt?: string;

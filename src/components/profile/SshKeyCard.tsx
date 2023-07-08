@@ -43,7 +43,8 @@ export const SshKeyCard = (props: SshKeyCardProps) => {
       border={'1px'}
       borderColor={'brand.border_gray'}
       shadow={'sm'}
-      width={{ sm: 'full', md: 'min' }}
+      width={{ base: 'full', md: 'auto' }}
+      _hover={{ bg: 'brand.bg_gray' }}
     >
       <Stack alignItems={'center'} spacing={2}>
         <FaKey size={34} color={'dimgray'} />
@@ -51,11 +52,19 @@ export const SshKeyCard = (props: SshKeyCardProps) => {
           SSH
         </Badge>
       </Stack>
-      <Tooltip label={'SSH Key name'}>
-        <Text fontWeight={'semibold'}>{props.sshKey.name}</Text>
+      <Tooltip label={props.sshKey.name ? 'SSH key name' : 'SSH key uuid'}>
+        {props.sshKey.name ? (
+          <Text whiteSpace={'nowrap'} fontWeight={'semibold'} isTruncated>
+            {props.sshKey.name}
+          </Text>
+        ) : (
+          <Text whiteSpace={'nowrap'} fontWeight={'light'} fontStyle={'italic'} isTruncated>
+            {props.sshKey.id ? props.sshKey.id.split('-').at(0) : 'no name'}
+          </Text>
+        )}
       </Tooltip>
       <Tooltip label={'SSH Key value'}>
-        <Text isTruncated maxW={'150px'}>
+        <Text isTruncated maxW={{ base: '50px', sm: '100px', md: '150px', xl: '300px' }}>
           {props.sshKey.value}
         </Text>
       </Tooltip>
