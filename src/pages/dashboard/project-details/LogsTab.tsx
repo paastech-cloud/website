@@ -1,10 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 import logSamples from '@assets/txt/log-samples.txt?raw';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const LogsTab = (props: ProjectDetailsTabProps) => {
+export const LogsTab = () => {
   return (
     <Box
       as={'code'}

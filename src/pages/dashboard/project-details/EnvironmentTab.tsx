@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { Button, Flex, Stack } from '@chakra-ui/react';
 import { FaPlus, FaSave } from 'react-icons/fa';
 import { EnvVariableInput } from '@components/dashboard/EnvVariableInput';
-import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 import { ConfigType, EnvVariableType } from '@/typings/config.type';
 import { ValidationError } from 'yup';
 import * as Yup from 'yup';
@@ -16,8 +15,7 @@ const appConfig: ConfigType = {
 
 type Vars = EnvVariableType & { index: number; error?: string };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const EnvironmentTab = (props: ProjectDetailsTabProps) => {
+export const EnvironmentTab = () => {
   const [envVars, setEnvVars] = useState<Vars[]>(appConfig.env.map((envVar, i) => ({ ...envVar, index: i })));
   const validationSchema = Yup.object({
     envKey: Yup.string().required('An environment key is required').max(32, 'An environment key must be at most 32 characters'),

@@ -53,9 +53,9 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
       case '/logs':
-        return <LogsTab project={appDetail} />;
+        return <LogsTab />;
       case '/env':
-        return <EnvironmentTab project={appDetail} />;
+        return <EnvironmentTab />;
       case '/settings':
         return <SettingsTab project={appDetail} />;
       default:
