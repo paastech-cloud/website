@@ -1,0 +1,12 @@
+[
+  {
+    "id": "848ff550-8b47-4956-ac0c-fa97e70b19bb",
+    "name": "ssh_key_1",
+    "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBXVlTEWG/71aGsiRIz0g7zFqi5bZVh7IstECoFBqvRynLlvejnS+YRrrITke+OTjD5VPybE1Vi2ImRXz1b6erF4ZjS9mSQZEzWOF7KcOlYCTv38vG+7msnopZi8e6VQa8Xmfg6J+15z4JCXuQ315ylFjni/VoYDiIgDFCHXqiY+25ZTlsXrflMRUnHto5PbptBcqv0LjTFkdoJqBOaL4vccX0gFBjtJLFgRlQI++Pz+z9kHxFFEaPaKxf7Xlz8p//DkCIFYiC0d9dIoQ0NAwW1gdU6MdHy4LO3fZnVP3xNdqCIx/o5pPb/5ZN+rwACTa0OO/BdqVQKYwf6fNJGidJ john.doe@example.tld"
+  },
+  {
+    "id": "9e31742a-157b-4607-9253-83c78f2d80a0",
+    "name": "ssh_key_2",
+    "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCKakpt3DUYQkRVgoiZzXB8l2CI/l/WUFWeMP85DNLB9wk6QHeUY0ATc3YHPX4ODSSEyE6oBfq2ntMB94dAy9afuQAcmuXBPqujv0Z4pBAuq2hskDuuhBc59X6jpIn+s1VrYG4b0wy57ZVNUM5P67cNQh/9jO/sJBh1Cw29H3g8hBi3qPkxjiTOX2L4bY3bBeHxxKdMl/ybQpNpOeacUppTUCSSVfStACE9cSPgiAf/Wa9HJPmjMDCJBCb7ZbTx0cr3Zk0Df6PqMO974qfO3nYGiQqq59rpVIice5WQ/O8NqhU/2k/F7oU2mo5WLkw1ccXy3kMaawXwuhv5eCoC2/qF"
+  }
+]
