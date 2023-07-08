@@ -1,10 +1,21 @@
 import { PASSWORD_REGEX, USERNAME_REGEX } from '@/helper/constants';
+import { accessExpired } from '@/lib/accessHelper';
 import { RegisterFormType } from '@/typings/form.type';
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import * as Yup from 'yup';
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!accessExpired()) {
+      navigate('/');
+    }
+  });
+  
   const validationSchema = Yup.object({
     username: Yup.string()
       .required('Username is required')

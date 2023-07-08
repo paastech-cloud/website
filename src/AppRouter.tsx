@@ -9,6 +9,7 @@ import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
 import { EmailVerificationPage } from '@pages/EmailVerificationPage';
 import { ProfilePage } from '@pages/dashboard/ProfilePage';
+import { Protected } from './components/Protected';
 
 export const AppRouter = () => {
   return createHashRouter([
@@ -37,7 +38,7 @@ export const AppRouter = () => {
     },
     {
       path: '/dashboard',
-      element: <RootDashboard />,
+      element: <Protected><RootDashboard /></Protected>,
       children: [
         {
           path: '/dashboard',

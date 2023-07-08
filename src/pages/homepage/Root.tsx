@@ -1,20 +1,23 @@
 import { css } from '@emotion/react';
+import { accessExpired } from '@/lib/accessHelper';
+import { useUser } from '@/lib/customHooks';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from '@components/Navbar';
 
 export const Root = () => {
+  const authenticated = useUser() && !accessExpired();
   return (
     <>
       <header css={headerCss}>
         <Navbar
           logoLink={{ title: 'PaaSTech', link: '/' }}
           primaryLink={{
-            title: 'Login',
-            link: '/login',
+            title: (!authenticated  ? 'Login' : 'Profile'),
+            link: (!authenticated ? '/login' : '/dashboard/profile'),
           }}
           secondaryLink={{
-            title: 'Register',
-            link: '/register',
+            title: (!authenticated  ? 'Register' : 'Dashboard'),
+            link: (!authenticated ? '/register' : '/dashboard'),
           }}
           links={[
             {

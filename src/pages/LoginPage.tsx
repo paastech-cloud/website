@@ -1,11 +1,22 @@
 import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
-import { Link as LinkRouter } from 'react-router-dom';
+import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
-import { authApi } from '../api/api';
+import { authApi, initializeApis } from '../api/api';
+import { accessExpired, setAccessToken } from '@/lib/accessHelper';
+import { useEffect } from 'react';
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
+  // login page shouldn't be accessible for an authenticated user
+  useEffect(() => {
+    if (!accessExpired()) {
+      navigate('/');
+    }
+  });
+
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').max(100, 'Email must be at most 100 characters'),
     password: Yup.string().required('Password is required'),
@@ -14,8 +25,13 @@ export const LoginPage = () => {
   const handleSubmit = (values: LoginFormType) => {
     // Handle form submission here
     console.log('Form values:', values);
-    authApi.authControllerLogin(values).then((token) => {
-      console.log(token.data);
+    authApi.authControllerLogin(values).then((response) => {
+      if (response?.data?.accessToken) {
+        console.log(response.data);
+        setAccessToken(response.data);
+        initializeApis();
+        navigate('/dashboard/profile');
+      }
     });
   };
 
