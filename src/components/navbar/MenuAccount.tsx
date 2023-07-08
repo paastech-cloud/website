@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { RiSettings3Fill } from 'react-icons/ri';
 import { GrPowerShutdown } from 'react-icons/gr';
 import { FaUser } from 'react-icons/fa';
@@ -10,7 +11,7 @@ export const MenuAccount = () => {
         Account
       </MenuButton>
       <MenuList color={'black'}>
-        <MenuItem>
+        <MenuItem as={RouterLink} to={'/dashboard/profile'}>
           <Flex flexDirection={'column'} alignItems={'start'}>
             <Box>Logged in as</Box>
             <Text as={'b'} maxW={'150px'} isTruncated title={'john.doe@example.tld'}>
@@ -19,8 +20,12 @@ export const MenuAccount = () => {
           </Flex>
         </MenuItem>
         <MenuDivider />
-        <MenuItem icon={<RiSettings3Fill size={'16px'} />}>Settings</MenuItem>
-        <MenuItem icon={<GrPowerShutdown size={'14px'} />}>Logout</MenuItem>
+        <MenuItem as={RouterLink} to={'/dashboard/profile'} icon={<RiSettings3Fill size={'16px'} />}>
+          Settings
+        </MenuItem>
+        <MenuItem as={RouterLink} to={'/'} icon={<GrPowerShutdown size={'14px'} />}>
+          Logout
+        </MenuItem>
       </MenuList>
     </Menu>
   );
