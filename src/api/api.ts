@@ -21,7 +21,7 @@ export const getConfig = (): Configuration => {
     configuration.accessToken = token.accessToken;
   }
   return configuration;
-}
+};
 
 // Add any new controller's API here:
 export let projectsApi = new ProjectsApi(getConfig(), axiosBaseUrl, axiosBackendClient);
@@ -30,4 +30,4 @@ export let usersApi = new UsersApi(getConfig(), axiosBaseUrl, axiosBackendClient
 export const initializeApis = () => {
   projectsApi = new ProjectsApi(getConfig(), axiosBaseUrl, axiosBackendClient);
   usersApi = new UsersApi(getConfig(), axiosBaseUrl, axiosBackendClient);
-}
+};

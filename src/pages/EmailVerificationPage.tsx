@@ -8,13 +8,8 @@ import { authApi } from '@/api/api';
 export const EmailVerificationPage = () => {
   const { token } = useParams();
 
-  if (!token) {
-    return <VerificationError />
-  }
-
   // Simulate the verification flow
-  const { isLoading, isSuccess } = useQuery('verify email', () =>
-      authApi.authControllerConfirmEmail(token));
+  const { isLoading, isSuccess } = useQuery('verify email', () => authApi.authControllerConfirmEmail(token || ''));
 
   return (
     <Flex align={'center'} justify={'stretch'} mt={10}>

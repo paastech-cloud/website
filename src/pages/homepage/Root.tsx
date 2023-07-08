@@ -12,12 +12,12 @@ export const Root = () => {
         <Navbar
           logoLink={{ title: 'PaaSTech', link: '/' }}
           primaryLink={{
-            title: (!authenticated  ? 'Login' : 'Profile'),
-            link: (!authenticated ? '/login' : '/dashboard/profile'),
+            title: !authenticated ? 'Login' : 'Profile',
+            link: !authenticated ? '/login' : '/dashboard/profile',
           }}
           secondaryLink={{
-            title: (!authenticated  ? 'Register' : 'Dashboard'),
-            link: (!authenticated ? '/register' : '/dashboard'),
+            title: !authenticated ? 'Register' : 'Dashboard',
+            link: !authenticated ? '/register' : '/dashboard',
           }}
           links={[
             {

@@ -12,7 +12,7 @@ export const MenuAccount = () => {
   const logOut = () => {
     removeAccessToken();
     navigate('/login');
-  }
+  };
   return (
     <Menu>
       <MenuButton as={Button} rounded={'lg'} minW={0} leftIcon={<FaUser />}>

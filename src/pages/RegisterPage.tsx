@@ -10,13 +10,13 @@ import * as Yup from 'yup';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (!accessExpired()) {
       navigate('/');
     }
   });
-  
+
   const validationSchema = Yup.object({
     username: Yup.string()
       .required('Username is required')
@@ -35,21 +35,22 @@ export const RegisterPage = () => {
       .required('Confirm Password is required'),
   });
 
-  const [status, setStatus] = useState<{success: boolean, message: string} | null>(null);
+  const [status, setStatus] = useState<{ success: boolean; message: string } | null>(null);
 
   const handleSubmit = (values: RegisterFormType) => {
     // Handle form submission here
-    authApi.authControllerRegister(values)
-    .then((response) => {
-      if (response?.data) {
-        setStatus({success: true, message: "Please verify your email to validate your account"});
-      }
-    })
-    .catch((err) => {
-      if (err?.response?.data?.message) {
-        setStatus({success: false, message: err?.response?.data?.message});
-      }
-    });
+    authApi
+      .authControllerRegister(values)
+      .then((response) => {
+        if (response?.data) {
+          setStatus({ success: true, message: 'Please verify your email to validate your account' });
+        }
+      })
+      .catch((err) => {
+        if (err?.response?.data?.message) {
+          setStatus({ success: false, message: err?.response?.data?.message });
+        }
+      });
   };
 
   return (
@@ -108,13 +109,12 @@ export const RegisterPage = () => {
                       Create
                     </Button>
                   </Stack>
-                  {
-                    status ? 
-                    <Alert status={status.success ? 'success' : 'error'} >
+                  {status ? (
+                    <Alert status={status.success ? 'success' : 'error'}>
                       <AlertIcon />
                       {status.message}
-                    </Alert> : null
-                  }
+                    </Alert>
+                  ) : null}
                 </Stack>
               </Form>
             </Formik>

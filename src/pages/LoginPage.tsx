@@ -26,17 +26,18 @@ export const LoginPage = () => {
 
   const handleSubmit = (values: LoginFormType) => {
     // Handle form submission here
-    authApi.authControllerLogin(values)
-    .then((response) => {
-      if (response?.data?.accessToken) {
-        setAccessToken(response.data);
-        initializeApis();
-        navigate('/dashboard/profile');
-      }
-    })
-    .catch(() => {
+    authApi
+      .authControllerLogin(values)
+      .then((response) => {
+        if (response?.data?.accessToken) {
+          setAccessToken(response.data);
+          initializeApis();
+          navigate('/dashboard/profile');
+        }
+      })
+      .catch(() => {
         setError('Wrong username or password');
-    });
+      });
   };
 
   return (
@@ -87,13 +88,12 @@ export const LoginPage = () => {
                       Login
                     </Button>
                   </Stack>
-                  {
-                    error ? 
-                    <Alert status='error' >
+                  {error ? (
+                    <Alert status={'error'}>
                       <AlertIcon />
                       {error}
-                    </Alert> : null
-                  }
+                    </Alert>
+                  ) : null}
                 </Stack>
               </Form>
             </Formik>

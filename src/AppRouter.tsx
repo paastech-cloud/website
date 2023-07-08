@@ -38,7 +38,11 @@ export const AppRouter = () => {
     },
     {
       path: '/dashboard',
-      element: <Protected><RootDashboard /></Protected>,
+      element: (
+        <Protected>
+          <RootDashboard />
+        </Protected>
+      ),
       children: [
         {
           path: '/dashboard',
