@@ -1,0 +1,20 @@
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] AppModule dependencies initialized +69ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] ConfigHostModule dependencies initialized +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] ConfigModule dependencies initialized +0ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] PrismaModule dependencies initialized +8ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [InstanceLoader] UsersModule dependencies initialized +0ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RoutesResolver] AuthController {/api/auth} (version: 1): +25ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/auth/register, POST} (version: 1) route +5ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/auth/login, POST} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/auth/logout, GET} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/auth/refresh, GET} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RoutesResolver] UsersController {/api/users} (version: 1): +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/users, GET} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/users/:id, GET} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/users/:id, PATCH} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [RouterExplorer] Mapped {/api/users/:id, DELETE} (version: 1) route +1ms
+[Nest] 111  - 04/07/2023, 3:54:45 PM     LOG [NestApplication] Nest application successfully started +192ms
+Segmentation fault (core dumped)

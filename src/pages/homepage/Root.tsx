@@ -1,11 +1,13 @@
-import { Navbar } from '@components/Navbar';
+import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
+import { Navbar } from '@components/Navbar';
 
 export const Root = () => {
   return (
     <>
-      <header>
+      <header css={headerCss}>
         <Navbar
+          logoLink={{ title: 'PaaSTech', link: '/' }}
           primaryLink={{
             title: 'Login',
             link: '/login',
@@ -43,3 +45,7 @@ export const Root = () => {
     </>
   );
 };
+
+const headerCss = css`
+  margin: 40px 45px;
+`;
