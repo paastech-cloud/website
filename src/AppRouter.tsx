@@ -7,6 +7,7 @@ import { LoginPage } from '@pages/LoginPage';
 import { RegisterPage } from '@pages/RegisterPage';
 import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
+import { EmailVerificationPage } from '@pages/EmailVerificationPage';
 
 export const AppRouter = () => {
   return createHashRouter([
@@ -26,6 +27,10 @@ export const AppRouter = () => {
         {
           path: 'register',
           element: <RegisterPage />,
+        },
+        {
+          path: 'email-verification/:token',
+          element: <EmailVerificationPage />,
         },
       ],
     },
