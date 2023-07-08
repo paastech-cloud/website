@@ -8,6 +8,7 @@ import { RegisterPage } from '@pages/RegisterPage';
 import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
 import { EmailVerificationPage } from '@pages/EmailVerificationPage';
+import { ProfilePage } from '@pages/dashboard/ProfilePage';
 
 export const AppRouter = () => {
   return createHashRouter([
@@ -41,6 +42,10 @@ export const AppRouter = () => {
         {
           path: '/dashboard',
           element: <DashboardHomePage />,
+        },
+        {
+          path: '/dashboard/profile',
+          element: <ProfilePage />,
         },
         {
           path: '/dashboard/:projectId',
