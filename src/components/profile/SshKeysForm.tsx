@@ -2,7 +2,6 @@ import { Field, Form, Formik } from 'formik';
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Stack, Textarea } from '@chakra-ui/react';
 import sshTextareaPlaceholder from '@assets/txt/ssh-textarea-placeholder.txt?raw';
 import * as Yup from 'yup';
-import { useCallback } from 'react';
 
 type SshKeysFormProps = {
   onSubmit?: (name: string, value: string) => void;
@@ -14,10 +13,6 @@ export const SshKeysForm = (props: SshKeysFormProps) => {
     publicKey: Yup.string().required('A value for the key is required'),
   });
 
-  const onSubmitHandler = useCallback((values: { title: string; publicKey: string }) => {
-    if (props.onSubmit) props.onSubmit(values.title, values.publicKey);
-  }, []);
-
   return (
     <Formik
       initialValues={{
@@ -25,7 +20,11 @@ export const SshKeysForm = (props: SshKeysFormProps) => {
         publicKey: '',
       }}
       validationSchema={validationSchema}
-      onSubmit={onSubmitHandler}
+      onSubmit={(values, actions) => {
+        if (undefined === props.onSubmit) return;
+        props.onSubmit(values.title, values.publicKey);
+        actions.resetForm();
+      }}
     >
       {({ handleSubmit, errors, touched }) => (
         <Form onSubmit={handleSubmit}>
