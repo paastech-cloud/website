@@ -85,7 +85,6 @@ export const SshKeyCard = (props: SshKeyCardProps) => {
               </Text>{' '}
               be undone. This will permanently delete the SSH key and if you’d like to use it in the future, you will need to upload it again.
             </Text>
-            <Text fontWeight={'bold'}>Any commits you signed with this key will become unverified after removing it.</Text>
           </ModalBody>
 
           <ModalFooter justifyContent={'center'}>
