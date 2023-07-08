@@ -4,6 +4,8 @@ import { FaPlus, FaSave } from 'react-icons/fa';
 import { EnvVariableInput } from '@components/dashboard/EnvVariableInput';
 import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 import { ConfigType, EnvVariableType } from '@/typings/config.type';
+import { ValidationError } from 'yup';
+import * as Yup from 'yup';
 
 const appConfig: ConfigType = {
   env: [
@@ -12,17 +14,37 @@ const appConfig: ConfigType = {
   ],
 };
 
-type Vars = EnvVariableType & { index: number };
+type Vars = EnvVariableType & { index: number; error?: string };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const EnvironmentTab = (props: ProjectDetailsTabProps) => {
   const [envVars, setEnvVars] = useState<Vars[]>(appConfig.env.map((envVar, i) => ({ ...envVar, index: i })));
+  const validationSchema = Yup.object({
+    envKey: Yup.string().required('An environment key is required').max(32, 'An environment key must be at most 32 characters'),
+    envValue: Yup.string().max(2048, 'An environment value must be at most 2048 characters'),
+  });
 
-  const saveEnvVars = useCallback(() => {
-    const sanitizedVars = envVars.filter((envVar) => envVar.envKey !== '');
-    console.log(sanitizedVars);
-    setEnvVars(sanitizedVars);
-  }, [envVars, setEnvVars]);
+  // SAVE / ADD / DELETE / UPDATE callbacks
+  const saveEnvVars = useCallback(async () => {
+    // check each env variables
+    for (const envVar of envVars) {
+      try {
+        await validationSchema.validate(envVar);
+      } catch (e) {
+        if (!(e instanceof ValidationError)) return;
+        // send error to the corresponding input
+        const error = e.errors.at(0);
+        setEnvVars((prevEnvVars) => {
+          const updatedEnvVars = [...prevEnvVars];
+          updatedEnvVars[envVar.index] = { ...envVar, error: error };
+          return updatedEnvVars;
+        });
+        return;
+      }
+    }
+    console.log(envVars);
+    setEnvVars(envVars);
+  }, [envVars]);
 
   const addEnvVar = useCallback(() => {
     const lastEnv = envVars.at(-1);
@@ -63,7 +85,15 @@ export const EnvironmentTab = (props: ProjectDetailsTabProps) => {
         </Button>
       </Flex>
       {envVars.map((envVar, i) => (
-        <EnvVariableInput key={i} index={i} envKey={envVar.envKey} value={envVar.value} onDelete={deleteEnvVar} onChange={updateEnvVar} />
+        <EnvVariableInput
+          key={i}
+          index={i}
+          envKey={envVar.envKey}
+          value={envVar.value}
+          error={envVar.error}
+          onDelete={deleteEnvVar}
+          onChange={updateEnvVar}
+        />
       ))}
     </Stack>
   );

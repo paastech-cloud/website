@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { Box, FormControl, HStack, IconButton, Input, Text, Tooltip } from '@chakra-ui/react';
+import { Box, FormControl, FormErrorMessage, HStack, IconButton, Input, Text, Tooltip } from '@chakra-ui/react';
 import { Form } from 'react-router-dom';
 import { FiTrash2 } from 'react-icons/fi';
 import { EnvVariableType } from '@/typings/config.type';
@@ -8,6 +8,7 @@ type EnvVariableInputProps = EnvVariableType & {
   index: number;
   onDelete?: (index: number) => void;
   onChange?: (index: number, envVar: EnvVariableType) => void;
+  error?: string;
 };
 
 export const EnvVariableInput = (props: EnvVariableInputProps) => {
@@ -25,7 +26,7 @@ export const EnvVariableInput = (props: EnvVariableInputProps) => {
   return (
     <Box>
       <Form>
-        <FormControl>
+        <FormControl isInvalid={!!props.error}>
           <HStack spacing={4}>
             <Input autoComplete={'off'} required placeholder={'KEY'} size={'lg'} value={envKey} onChange={onChangeEnvKey} />
             <Text as={'span'}>=</Text>
@@ -41,6 +42,7 @@ export const EnvVariableInput = (props: EnvVariableInputProps) => {
               />
             </Tooltip>
           </HStack>
+          <FormErrorMessage>{props.error}</FormErrorMessage>
         </FormControl>
       </Form>
     </Box>
