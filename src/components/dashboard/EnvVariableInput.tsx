@@ -15,6 +15,12 @@ export const EnvVariableInput = (props: EnvVariableInputProps) => {
   const [envKey, setEnvKey] = useState(props.envKey);
   const [envValue, setEnvValue] = useState(props.value);
 
+  // re-render new key/value if we're deleting a var
+  useEffect(() => {
+    setEnvKey(props.envKey);
+    setEnvValue(props.value);
+  }, [props.envKey, props.value]);
+
   useEffect(() => {
     if (undefined === props.onChange) return;
     props.onChange(props.index, { envKey, value: envValue });
