@@ -25,9 +25,7 @@ export function useUser() {
       .then((user => {
         setUser(user);
       }))
-      .catch(() => {
-        navigate('/login');
-      })
+      .catch()
     }
     getUserDetails();
   }, []);

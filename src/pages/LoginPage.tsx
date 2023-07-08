@@ -1,11 +1,11 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
+import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
 import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
 import { authApi, initializeApis } from '../api/api';
 import { accessExpired, setAccessToken } from '@/lib/accessHelper';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -22,16 +22,20 @@ export const LoginPage = () => {
     password: Yup.string().required('Password is required'),
   });
 
+  const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = (values: LoginFormType) => {
     // Handle form submission here
-    console.log('Form values:', values);
-    authApi.authControllerLogin(values).then((response) => {
+    authApi.authControllerLogin(values)
+    .then((response) => {
       if (response?.data?.accessToken) {
-        console.log(response.data);
         setAccessToken(response.data);
         initializeApis();
         navigate('/dashboard/profile');
       }
+    })
+    .catch(() => {
+        setError('Wrong username or password');
     });
   };
 
@@ -83,6 +87,13 @@ export const LoginPage = () => {
                       Login
                     </Button>
                   </Stack>
+                  {
+                    error ? 
+                    <Alert status='error' >
+                      <AlertIcon />
+                      {error}
+                    </Alert> : null
+                  }
                 </Stack>
               </Form>
             </Formik>

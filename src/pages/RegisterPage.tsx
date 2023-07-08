@@ -1,9 +1,10 @@
+import { authApi } from '@/api/api';
 import { PASSWORD_REGEX, USERNAME_REGEX } from '@/helper/constants';
 import { accessExpired } from '@/lib/accessHelper';
 import { RegisterFormType } from '@/typings/form.type';
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
+import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as Yup from 'yup';
 
@@ -34,9 +35,21 @@ export const RegisterPage = () => {
       .required('Confirm Password is required'),
   });
 
+  const [status, setStatus] = useState<{success: boolean, message: string} | null>(null);
+
   const handleSubmit = (values: RegisterFormType) => {
     // Handle form submission here
-    console.log(values);
+    authApi.authControllerRegister(values)
+    .then((response) => {
+      if (response?.data) {
+        setStatus({success: true, message: "Please verify your email to validate your account"});
+      }
+    })
+    .catch((err) => {
+      if (err?.response?.data?.message) {
+        setStatus({success: false, message: err?.response?.data?.message});
+      }
+    });
   };
 
   return (
@@ -95,6 +108,13 @@ export const RegisterPage = () => {
                       Create
                     </Button>
                   </Stack>
+                  {
+                    status ? 
+                    <Alert status={status.success ? 'success' : 'error'} >
+                      <AlertIcon />
+                      {status.message}
+                    </Alert> : null
+                  }
                 </Stack>
               </Form>
             </Formik>

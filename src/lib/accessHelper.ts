@@ -6,7 +6,6 @@ export const setAccessToken = (accessToken: AccessToken) => {
     // adding 6 hours minus 10 sec
     date.setTime(date.getTime() + 6 * 60 * 60 * 1000 - 10000);
     sessionStorage.setItem('accessExpiration', date.toISOString());
-    console.log(sessionStorage.getItem('accessExpiration'));
 }
 
 export const getAccessToken = (): AccessToken | null => {
