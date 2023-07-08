@@ -83,8 +83,9 @@ export const SshKeyCard = (props: SshKeyCardProps) => {
               <Text as={'span'} fontWeight={'bold'}>
                 CANNOT
               </Text>{' '}
-              be undone. This will permanently delete the SSH key and if you’d like to use it in the future, you will need to upload it again.
+              be undone.
             </Text>
+            <Text>This will permanently delete the SSH key and if you’d like to use it in the future, you will need to upload it again.</Text>
           </ModalBody>
 
           <ModalFooter justifyContent={'center'}>
