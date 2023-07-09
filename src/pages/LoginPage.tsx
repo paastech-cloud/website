@@ -3,8 +3,8 @@ import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
-import { authApi, initializeApis } from '../api/api';
-import { accessExpired, setAccessToken } from '@/lib/accessHelper';
+import { authApi } from '../api/api';
+import { accessExpired, setAccessExpiration } from '@/lib/accessHelper';
 import { useEffect, useState } from 'react';
 
 export const LoginPage = () => {
@@ -30,9 +30,8 @@ export const LoginPage = () => {
       .authControllerLogin(values)
       .then((response) => {
         if (response?.data?.accessToken) {
-          setAccessToken(response.data);
-          initializeApis();
-          navigate('/dashboard/profile');
+          setAccessExpiration();
+          navigate('/dashboard');
         }
       })
       .catch(() => {

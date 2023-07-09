@@ -1,16 +1,8 @@
-import { AccessToken } from '@/api/generated';
-
-export const setAccessToken = (accessToken: AccessToken) => {
-  localStorage.setItem('accessToken', accessToken.accessToken);
+export const setAccessExpiration = () => {
   const date = new Date();
   // adding 6 hours minus 10 sec
   date.setTime(date.getTime() + 6 * 60 * 60 * 1000 - 10000);
   localStorage.setItem('accessExpiration', date.toISOString());
-};
-
-export const getAccessToken = (): AccessToken | null => {
-  const token = localStorage.getItem('accessToken');
-  return !token ? null : { accessToken: token };
 };
 
 const getAccessExpiration = (): Date | null => {
@@ -23,7 +15,6 @@ export const accessExpired = (): boolean => {
   return !expiryTime || expiryTime <= new Date();
 };
 
-export const removeAccessToken = () => {
-  localStorage.removeItem('accessToken');
+export const removeAccessExpiration = () => {
   localStorage.removeItem('accessExpiration');
 };

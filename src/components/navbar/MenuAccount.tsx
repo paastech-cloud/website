@@ -4,14 +4,22 @@ import { RiSettings3Fill } from 'react-icons/ri';
 import { GrPowerShutdown } from 'react-icons/gr';
 import { FaUser } from 'react-icons/fa';
 import { useUser } from '@/lib/customHooks';
-import { removeAccessToken } from '@/lib/accessHelper';
+import { authApi } from '@/api/api';
+import { removeAccessExpiration } from '@/lib/accessHelper';
 
 export const MenuAccount = () => {
   const user = useUser();
   const navigate = useNavigate();
   const logOut = () => {
-    removeAccessToken();
-    navigate('/login');
+    authApi.authControllerLogout()
+    .then(() => {
+      removeAccessExpiration();
+      navigate('/login');
+    })
+    .catch(() => {
+      console.log("Log out error");
+    })
+
   };
   return (
     <Menu>
