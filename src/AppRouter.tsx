@@ -10,6 +10,8 @@ import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
 import { EmailVerificationPage } from '@pages/EmailVerificationPage';
 import { ProfilePage } from '@pages/dashboard/ProfilePage';
 import { Protected } from './components/Protected';
+import { PasswordRecoveryPage } from './pages/PasswordRecoveryPage';
+import { PasswordResetPage } from './pages/PasswordResetPage';
 
 export const AppRouter = () => {
   return createHashRouter([
@@ -33,6 +35,14 @@ export const AppRouter = () => {
         {
           path: 'email-verification/:token',
           element: <EmailVerificationPage />,
+        },
+        {
+          path: 'password-recovery',
+          element: <PasswordRecoveryPage />,
+        },
+        {
+          path: 'password-reset/:token',
+          element: <PasswordResetPage />,
         },
       ],
     },

@@ -8,7 +8,7 @@ import { authApi } from '@/api/api';
 export const EmailVerificationPage = () => {
   const { token } = useParams();
 
-  // Simulate the verification flow
+  // Send email verification request to the API
   const { isLoading, isSuccess } = useQuery('verify email', () => authApi.authControllerConfirmEmail(token || ''));
 
   return (

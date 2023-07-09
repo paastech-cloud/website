@@ -4,7 +4,7 @@ export const axiosBaseUrl = `${import.meta.env.VITE_API_SCHEMA}://${import.meta.
 
 export const axiosConfig: AxiosRequestConfig = {
   baseURL: axiosBaseUrl,
-  withCredentials: true
+  withCredentials: true,
 };
 
 const axiosBackendClient = axios.create(axiosConfig);

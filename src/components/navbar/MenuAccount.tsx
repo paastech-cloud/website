@@ -11,15 +11,15 @@ export const MenuAccount = () => {
   const user = useUser();
   const navigate = useNavigate();
   const logOut = () => {
-    authApi.authControllerLogout()
-    .then(() => {
-      removeAccessExpiration();
-      navigate('/login');
-    })
-    .catch(() => {
-      console.log("Log out error");
-    })
-
+    authApi
+      .authControllerLogout()
+      .then(() => {
+        removeAccessExpiration();
+        navigate('/login');
+      })
+      .catch(() => {
+        console.log('Log out error');
+      });
   };
   return (
     <Menu>
