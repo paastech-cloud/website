@@ -46,7 +46,7 @@ export const EnvironmentTab = () => {
 
   const addEnvVar = useCallback(() => {
     const lastEnv = envVars.at(-1);
-    if (undefined === lastEnv || lastEnv.envKey === '') return;
+    if (lastEnv?.envKey === '') return;
     setEnvVars([...envVars, { index: envVars.length, envKey: '', value: '' }]);
   }, [envVars, setEnvVars]);
 
