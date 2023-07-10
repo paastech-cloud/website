@@ -48,6 +48,9 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - run: yarn build
+        env:
+          VITE_API_SCHEMA: $API_SCHEMA
+          VITE_API_HOSTNAME: $API_HOSTNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

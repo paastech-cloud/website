@@ -1,25 +1,56 @@
+import { authApi } from '@/api/api';
+import { PASSWORD_REGEX, USERNAME_REGEX } from '@/helper/constants';
+import { accessExpired } from '@/lib/accessHelper';
 import { RegisterFormType } from '@/typings/form.type';
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
+import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import * as Yup from 'yup';
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!accessExpired()) {
+      navigate('/');
+    }
+  });
+
   const validationSchema = Yup.object({
-    username: Yup.string().required('Username is required').max(40, 'Username must be at most 40 characters'),
-    email: Yup.string().email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
+    username: Yup.string()
+      .required('Username is required')
+      .min(3, 'Username must be at least 3 characters')
+      .max(30, 'Username must be at most 30 characters')
+      .matches(USERNAME_REGEX, 'Username must start with a letter and can only contain letters, digits and underscores'),
+    email: Yup.string().email('Invalid email address').max(100, 'Email must be at most 100 characters'),
     password: Yup.string()
       .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(255, 'Password must be at most 255 characters'),
+      .min(8, 'Password must be at least 8 characters')
+      .max(255, 'Password must be at most 255 characters')
+      .matches(PASSWORD_REGEX, 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Passwords must match')
       .nullable()
       .required('Confirm Password is required'),
   });
 
+  const [status, setStatus] = useState<{ success: boolean; message: string } | null>(null);
+
   const handleSubmit = (values: RegisterFormType) => {
     // Handle form submission here
-    console.log(values);
+    authApi
+      .authControllerRegister(values)
+      .then((response) => {
+        if (response?.data) {
+          setStatus({ success: true, message: 'Please verify your email to validate your account' });
+        }
+      })
+      .catch((err) => {
+        if (err?.response?.data?.message) {
+          setStatus({ success: false, message: err?.response?.data?.message });
+        }
+      });
   };
 
   return (
@@ -78,6 +109,12 @@ export const RegisterPage = () => {
                       Create
                     </Button>
                   </Stack>
+                  {status ? (
+                    <Alert status={status.success ? 'success' : 'error'}>
+                      <AlertIcon />
+                      {status.message}
+                    </Alert>
+                  ) : null}
                 </Stack>
               </Form>
             </Formik>

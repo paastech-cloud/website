@@ -1,20 +1,15 @@
 import { Box, Flex, Heading, Link, Spinner, Stack, Text } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { authApi } from '@/api/api';
 
 export const EmailVerificationPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSuccess, setIsSuccess] = useState<boolean>();
+  const { token } = useParams();
 
-  // Simulate the verification flow
-  useEffect(() => {
-    setTimeout(() => {
-      setIsSuccess(Math.random() >= 0.5);
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  // Send email verification request to the API
+  const { isLoading, isSuccess } = useQuery('verify email', () => authApi.authControllerConfirmEmail(token || ''));
 
   return (
     <Flex align={'center'} justify={'stretch'} mt={10}>

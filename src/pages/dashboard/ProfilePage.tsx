@@ -6,17 +6,13 @@ import { SshKeysForm } from '@components/profile/SshKeysForm';
 import { SshKeyCard } from '@components/profile/SshKeyCard';
 import { SshkeyType } from '@/typings/sshkey.type';
 import sshKeysSamples from '@assets/txt/sshkeys-samples.json';
-
-const userInfo = {
-  id: 'bf5f847e-7ff1-4ecf-9112-4bdfae6e7f68',
-  username: 'john.doe',
-  email: 'john.doe@example.tld',
-  isAdmin: false,
-};
+import { useUser } from '@/lib/customHooks';
 
 const sshKeys = sshKeysSamples as unknown as SshkeyType[];
 
 export const ProfilePage = () => {
+  const userInfo = useUser();
+
   const addSshKeyHandler = useCallback((name: string, value: string) => {
     console.log('New ssh key', name, value);
   }, []);
@@ -32,15 +28,15 @@ export const ProfilePage = () => {
           Profile Information
         </Heading>
         <Flex flexWrap={'wrap'} gap={8} alignItems={'end'}>
-          <ProfileAvatar id={userInfo.id} name={userInfo.username} />
+          <ProfileAvatar id={userInfo?.username} name={userInfo?.username || ''} />
           <Stack spacing={4} fontSize={'lg'}>
-            {userInfo.isAdmin && (
+            {userInfo?.isAdmin && (
               <Badge alignSelf={'start'} colorScheme={'yellow'} px={2} fontSize={'md'} rounded={'lg'}>
                 Admin
               </Badge>
             )}
-            <Paragraph title={'Username'} value={userInfo.username} />
-            <Paragraph title={'Email'} value={userInfo.email} />
+            <Paragraph title={'Username'} value={userInfo?.username} />
+            <Paragraph title={'Email'} value={userInfo?.email} />
           </Stack>
         </Flex>
       </Stack>

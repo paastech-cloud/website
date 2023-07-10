@@ -1,13 +1,14 @@
-import { HStack } from '@chakra-ui/react';
+import { ReactElement } from 'react';
+import { Flex, HStack } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { NavLink } from '@components/NavLink';
-import { LinkType } from '@/typings/link.type';
 import { NavbarLogo } from '@components/navbar/NavbarLogo';
+import { LinkType } from '@/typings/link.type';
 
 type NavbarProps = {
   logoLink: LinkType;
-  primaryLink: LinkType;
-  secondaryLink: LinkType;
+  primaryLink: LinkType & { icon?: ReactElement };
+  secondaryLink?: LinkType;
   links: LinkType[];
 };
 
@@ -23,8 +24,18 @@ export const Navbar = (props: NavbarProps) => {
       </HStack>
 
       <HStack spacing={4} alignItems={'center'}>
-        <NavLink title={props.secondaryLink.title} link={props.secondaryLink.link} />
-        <NavLink title={props.primaryLink.title} link={props.primaryLink.link} variant={'solid'} bg={'brand.red'} />
+        {props.secondaryLink ? <NavLink title={props.secondaryLink.title} link={props.secondaryLink.link} /> : null}
+        <NavLink
+          title={
+            <Flex alignItems={'center'} gap={1}>
+              {props.primaryLink.icon}
+              {props.primaryLink.title}
+            </Flex>
+          }
+          link={props.primaryLink.link}
+          variant={'solid'}
+          bg={'brand.red'}
+        />
       </HStack>
     </div>
   );

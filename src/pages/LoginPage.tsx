@@ -1,21 +1,42 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
-import { Link as LinkRouter } from 'react-router-dom';
+import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
+import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
+import { authApi } from '../api/api';
+import { accessExpired, setAccessExpiration } from '@/lib/accessHelper';
+import { useEffect, useState } from 'react';
 
 export const LoginPage = () => {
-  const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Email is required').max(100, 'Email must be at most 100 characters'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(255, 'Password must be at most 255 characters'),
+  const navigate = useNavigate();
+
+  // login page shouldn't be accessible for an authenticated user
+  useEffect(() => {
+    if (!accessExpired()) {
+      navigate('/');
+    }
   });
+
+  const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email address').max(100, 'Email must be at most 100 characters'),
+    password: Yup.string().required('Password is required'),
+  });
+
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (values: LoginFormType) => {
     // Handle form submission here
-    console.log('Form values:', values);
+    authApi
+      .authControllerLogin(values)
+      .then((response) => {
+        if (response?.data?.accessToken) {
+          setAccessExpiration();
+          navigate('/dashboard');
+        }
+      })
+      .catch(() => {
+        setError('Wrong username or password');
+      });
   };
 
   return (
@@ -29,6 +50,7 @@ export const LoginPage = () => {
             <Formik
               initialValues={{
                 email: '',
+                username: '',
                 password: '',
                 rememberMe: false,
               }}
@@ -65,6 +87,12 @@ export const LoginPage = () => {
                       Login
                     </Button>
                   </Stack>
+                  {error ? (
+                    <Alert status={'error'}>
+                      <AlertIcon />
+                      {error}
+                    </Alert>
+                  ) : null}
                 </Stack>
               </Form>
             </Formik>
