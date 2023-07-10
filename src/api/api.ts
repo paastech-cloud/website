@@ -3,11 +3,10 @@ import axiosBackendClient, { axiosBaseUrl } from './axios-client';
 import { AuthApi, Configuration, ProjectsApi, UsersApi } from './generated';
 
 export const getConfig = (): Configuration => {
-  const configuration: Configuration = {
+  return {
     basePath: axiosBaseUrl,
     isJsonMime: () => false,
   };
-  return configuration;
 };
 
 // Add any new controller's API here:
