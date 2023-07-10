@@ -15,7 +15,7 @@ export const Root = () => {
           primaryLink={{
             title: !authenticated ? 'Login' : 'Dashboard',
             link: !authenticated ? '/login' : '/dashboard',
-            icon: <MdSpaceDashboard />,
+            icon: authenticated ? <MdSpaceDashboard /> : undefined,
           }}
           secondaryLink={!authenticated ? { title: 'Register', link: '/register' } : undefined}
           links={[
