@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
+import { Outlet } from 'react-router-dom';
+import { MdSpaceDashboard } from 'react-icons/md';
+import { Navbar } from '@components/Navbar';
 import { accessExpired } from '@/lib/accessHelper';
 import { useUser } from '@/lib/customHooks';
-import { Outlet } from 'react-router-dom';
-import { Navbar } from '@components/Navbar';
 
 export const Root = () => {
   const authenticated = useUser() && !accessExpired();
@@ -12,13 +13,11 @@ export const Root = () => {
         <Navbar
           logoLink={{ title: 'PaaSTech', link: '/' }}
           primaryLink={{
-            title: !authenticated ? 'Login' : 'Profile',
-            link: !authenticated ? '/login' : '/dashboard/profile',
+            title: !authenticated ? 'Login' : 'Dashboard',
+            link: !authenticated ? '/login' : '/dashboard',
+            icon: <MdSpaceDashboard />,
           }}
-          secondaryLink={{
-            title: !authenticated ? 'Register' : 'Dashboard',
-            link: !authenticated ? '/register' : '/dashboard',
-          }}
+          secondaryLink={!authenticated ? { title: 'Register', link: '/register' } : undefined}
           links={[
             {
               title: 'Home',
