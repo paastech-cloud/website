@@ -1,26 +1,29 @@
 import { usersApi } from '@/api/api';
 import { useState, useEffect } from 'react';
 import { accessExpired } from './accessHelper';
-import { toUser, User } from './user';
+import { UserType } from '@/typings/user.type';
 
 export function useUser() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserType | null>(null);
 
-  const getAuthenticatedUser = (): Promise<User | null> => {
-    return new Promise((resolve) => {
-      if (accessExpired()) {
-        resolve(null);
-        return;
-      }
-      usersApi
-        .usersControllerGetProfile()
-        .then((response) => {
-          resolve(toUser(response));
-        })
-        .catch(() => {
-          resolve(null);
-        });
-    });
+  const getAuthenticatedUser = (): Promise<UserType | null> => {
+    if (accessExpired()) {
+      return (async () => null)();
+    }
+
+    return usersApi
+      .usersControllerGetProfile()
+      .then((response) => {
+        if (!response.data || !(response.data as UserType).username) return null;
+        const user = response.data as UserType;
+
+        return {
+          username: user.username,
+          email: user.email,
+          isAdmin: user.isAdmin,
+        };
+      })
+      .catch(() => null);
   };
 
   useEffect(() => {
