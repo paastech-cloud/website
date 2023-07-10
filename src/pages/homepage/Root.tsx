@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { Navbar } from '@components/Navbar';
-import { accessExpired } from '@/lib/accessHelper';
-import { useUser } from '@/lib/customHooks';
+import { accessExpired } from '@/helper/accessHelper';
+import { useUser } from '@/hooks/customHooks';
 
 export const Root = () => {
   const authenticated = useUser() && !accessExpired();

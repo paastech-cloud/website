@@ -3,9 +3,9 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { RiSettings3Fill } from 'react-icons/ri';
 import { GrPowerShutdown } from 'react-icons/gr';
 import { FaUser } from 'react-icons/fa';
-import { useUser } from '@/lib/customHooks';
+import { useUser } from '@/hooks/customHooks';
 import { authApi } from '@/api/api';
-import { removeAccessExpiration } from '@/lib/accessHelper';
+import { removeAccessExpiration } from '@/helper/accessHelper';
 
 export const MenuAccount = () => {
   const user = useUser();

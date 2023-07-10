@@ -1,6 +1,6 @@
 import { authApi } from '@/api/api';
 import { PASSWORD_REGEX, USERNAME_REGEX } from '@/helper/constants';
-import { accessExpired } from '@/lib/accessHelper';
+import { accessExpired } from '@/helper/accessHelper';
 import { RegisterFormType } from '@/typings/form.type';
 import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';

@@ -6,7 +6,7 @@ import { SshKeysForm } from '@components/profile/SshKeysForm';
 import { SshKeyCard } from '@components/profile/SshKeyCard';
 import { SshkeyType } from '@/typings/sshkey.type';
 import sshKeysSamples from '@assets/txt/sshkeys-samples.json';
-import { useUser } from '@/lib/customHooks';
+import { useUser } from '@/hooks/customHooks';
 
 const sshKeys = sshKeysSamples as unknown as SshkeyType[];
 

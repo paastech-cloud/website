@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react';
 import { Alert, AlertIcon, Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack } from '@chakra-ui/react';
 import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { LoginFormType } from '@/typings/form.type';
-import { authApi } from '../api/api';
-import { accessExpired, setAccessExpiration } from '@/lib/accessHelper';
-import { useEffect, useState } from 'react';
+import { accessExpired, setAccessExpiration } from '@/helper/accessHelper';
+import { authApi } from '@/api/api';
 
 export const LoginPage = () => {
   const navigate = useNavigate();

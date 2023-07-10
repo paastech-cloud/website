@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { accessExpired } from '@/lib/accessHelper';
+import { accessExpired } from '@/helper/accessHelper';
 
 type Props = {
   children: ReactNode;

@@ -9,9 +9,9 @@ import { DashboardHomePage } from '@pages/dashboard/DashboardHomePage';
 import { DashboardDetails } from '@pages/dashboard/DashboardDetails';
 import { EmailVerificationPage } from '@pages/EmailVerificationPage';
 import { ProfilePage } from '@pages/dashboard/ProfilePage';
-import { Protected } from './components/Protected';
-import { PasswordRecoveryPage } from './pages/PasswordRecoveryPage';
-import { PasswordResetPage } from './pages/PasswordResetPage';
+import { PasswordRecoveryPage } from '@pages/PasswordRecoveryPage';
+import { PasswordResetPage } from '@pages/PasswordResetPage';
+import { Protected } from '@components/Protected';
 
 export const AppRouter = () => {
   return createHashRouter([

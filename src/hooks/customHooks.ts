@@ -1,6 +1,6 @@
 import { usersApi } from '@/api/api';
 import { useState, useEffect } from 'react';
-import { accessExpired } from './accessHelper';
+import { accessExpired } from '@/helper/accessHelper';
 import { UserType } from '@/typings/user.type';
 
 export function useUser() {

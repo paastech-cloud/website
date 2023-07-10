@@ -1,7 +1,7 @@
 export const setAccessExpiration = () => {
   const date = new Date();
   // adding 6 hours minus 10 sec
-  date.setTime(date.getTime() + 6 * 60 * 60 * 1000 - 10000);
+  date.setTime(date.getTime() + 6 * 60 * 60 * 1000 - 10_000);
   localStorage.setItem('accessExpiration', date.toISOString());
 };
 
