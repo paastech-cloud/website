@@ -28,8 +28,9 @@ export const PasswordResetPage = () => {
     authApi
       .authControllerResetPassword(token || '', values)
       .then((response) => {
-        if (response?.data) {
-          setStatus({ success: true, message: response.data });
+        const data = response.data as { message: string };
+        if (data.message) {
+          setStatus({ success: true, message: data.message });
         }
       })
       .catch((err) => {

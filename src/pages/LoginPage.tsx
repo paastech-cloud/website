@@ -29,10 +29,12 @@ export const LoginPage = () => {
     authApi
       .authControllerLogin(values)
       .then((response) => {
-        if (response?.data?.accessToken) {
-          setAccessExpiration();
-          navigate('/dashboard');
-        }
+        if (!response.data) return;
+        const data = response.data as { content: { accessToken: string } };
+        if (!data.content || !data.content.accessToken) return;
+
+        setAccessExpiration();
+        navigate('/dashboard');
       })
       .catch(() => {
         setError('Wrong username or password');

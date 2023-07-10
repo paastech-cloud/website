@@ -26,6 +26,7 @@
     "react/no-unescaped-entities": "off",
     "react/no-unknown-property": "off",
     "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react-refresh/only-export-components": "warn",
     "react/jsx-curly-brace-presence": ["error", {"props": "always", "children": "never"}]
   }

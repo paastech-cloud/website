@@ -14,8 +14,11 @@ export function useUser() {
     return usersApi
       .usersControllerGetProfile()
       .then((response) => {
-        if (!response.data || !(response.data as UserType).username) return null;
-        const user = response.data as UserType;
+        if (!response.data) return null;
+
+        const { content } = response.data as { content: UserType };
+        if (!content || !content.username) return null;
+        const user = content as UserType;
 
         return {
           username: user.username,
