@@ -16,9 +16,8 @@ export function useUser() {
       .then((response) => {
         if (!response.data) return null;
 
-        const { content } = response.data as { content: UserType };
-        if (!content || !content.username) return null;
-        const user = content as UserType;
+        const user = response.data.content as UserType;
+        if (!user || !user.username) return null;
 
         return {
           username: user.username,

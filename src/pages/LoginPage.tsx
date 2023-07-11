@@ -29,9 +29,9 @@ export const LoginPage = () => {
     authApi
       .authControllerLogin(values)
       .then((response) => {
-        if (!response.data) return;
-        const data = response.data as { content: { accessToken: string } };
-        if (!data.content || !data.content.accessToken) return;
+        if (!response.data.content) return;
+        const content = response.data.content as { accessToken: string };
+        if (!content || !content.accessToken) return;
 
         setAccessExpiration();
         navigate('/dashboard');

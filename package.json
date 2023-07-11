@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run openapi && vite",
-    "build": "tsc && vite build",
+    "dev": "yarn openapi && vite",
+    "build": "yarn openapi && tsc && vite build",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "preview": "vite preview",
     "openapi": "openapi-generator-cli generate -i ./openapi.json -g typescript-axios -o ./src/api/generated"
