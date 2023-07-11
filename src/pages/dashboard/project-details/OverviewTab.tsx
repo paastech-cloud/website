@@ -1,22 +1,26 @@
-import { Badge, Flex, Button, HStack, Text, Link, VStack, Box } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { FiRotateCcw } from 'react-icons/fi';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { SimpleCard } from '@components/dashboard/SimpleCard';
 import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
+import { ProjectStatus } from '@/typings/project.type';
 
 export const OverviewTab = (props: ProjectDetailsTabProps) => {
+  const canStart = props.project.status === ProjectStatus.STATUS_STOPPED;
+  const isRunning = props.project.status === ProjectStatus.STATUS_RUNNING;
+
   return (
     <Flex flexDirection={'column'} alignItems={'start'} gap={6}>
       <SimpleCard heading={'Actions on app'}>
         <HStack w={'full'} spacing={6}>
-          <Button colorScheme={'green'} leftIcon={<FaPlay size={17} />}>
+          <Button colorScheme={'green'} leftIcon={<FaPlay size={17} />} isDisabled={!canStart}>
             START
           </Button>
-          <Button colorScheme={'orange'} leftIcon={<FaStop size={17} />}>
+          <Button colorScheme={'orange'} leftIcon={<FaStop size={17} />} isDisabled={!isRunning}>
             STOP
           </Button>
-          <Button colorScheme={'teal'} leftIcon={<FiRotateCcw size={17} />}>
+          <Button colorScheme={'teal'} leftIcon={<FiRotateCcw size={17} />} isDisabled={!isRunning}>
             RESTART
           </Button>
         </HStack>
