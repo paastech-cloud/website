@@ -1,6 +1,6 @@
-import { useEffect, useMemo } from 'react';
-import { Badge, Flex } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Badge, Flex, useToast } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OverviewTab } from '@pages/dashboard/project-details/OverviewTab';
 import { LogsTab } from '@pages/dashboard/project-details/LogsTab';
 import { EnvironmentTab } from '@pages/dashboard/project-details/EnvironmentTab';
@@ -9,8 +9,8 @@ import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { StatusCard } from '@components/dashboard/StatusCard';
 import { useProjectStore } from '@/stores/project.store';
-import { getProjectFromId } from '@helper/api/getProjectFromId';
 import { BreadcrumbType } from '@/typings/link.type';
+import { useQuery } from 'react-query';
 
 type DashboardDetailsProps = {
   tabTitle?: string;
@@ -19,16 +19,21 @@ type DashboardDetailsProps = {
 
 export const DashboardDetails = (props: DashboardDetailsProps) => {
   const { projectId } = useParams();
+  const navigate = useNavigate();
+  const toast = useToast();
   const currentProject = useProjectStore((state) => state.currentProject);
-  const setCurrentProject = useProjectStore((state) => state.setCurrentProject);
+  const refreshProject = useProjectStore((state) => state.refreshCurrentProject);
 
-  useEffect(() => {
-    if (undefined === projectId) return;
-    getProjectFromId(projectId).then((project) => {
-      if (null === project) return;
-      setCurrentProject(project);
+  useQuery('fetch project details', () => {
+    if (undefined === projectId) {
+      navigate(-1);
+      return;
+    }
+    refreshProject(projectId).catch((e: Error) => {
+      toast({ title: e.message, status: 'error', isClosable: true });
+      navigate(-1);
     });
-  }, []);
+  });
 
   const breadcrumbs = useMemo(() => {
     const b: BreadcrumbType[] = [{ title: currentProject.name, url: `/dashboard/${currentProject.id}` }];
