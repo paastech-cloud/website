@@ -49,8 +49,7 @@ jobs:
 
       - run: yarn build
         env:
-          VITE_API_SCHEMA: $API_SCHEMA
-          VITE_API_HOSTNAME: $API_HOSTNAME
+          VITE_API_BASE: ${{ vars.API_BASE }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
