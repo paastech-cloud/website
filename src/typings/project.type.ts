@@ -1,9 +1,9 @@
-import { ConfigType } from '@/typings/config.type';
+import { ApiConfigType, ConfigType } from '@/typings/config.type';
 
 export type ApiProjectType = {
   id: string;
   name: string;
-  config: ConfigType;
+  config: ApiConfigType;
   createdAt: string;
   updatedAt: string;
 };
