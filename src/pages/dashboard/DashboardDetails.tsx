@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Badge, Flex } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import { OverviewTab } from '@pages/dashboard/project-details/OverviewTab';
 import { LogsTab } from '@pages/dashboard/project-details/LogsTab';
 import { EnvironmentTab } from '@pages/dashboard/project-details/EnvironmentTab';
@@ -7,17 +8,9 @@ import { SettingsTab } from '@pages/dashboard/project-details/SettingsTab';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { StatusCard } from '@components/dashboard/StatusCard';
+import { useProjectStore } from '@/stores/project.store';
+import { getProjectFromId } from '@helper/api/getProjectFromId';
 import { BreadcrumbType } from '@/typings/link.type';
-import { ProjectStatus, ProjectType } from '@/typings/project.type';
-
-const appDetail: ProjectType = {
-  id: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
-  status: ProjectStatus.STATUS_STOPPED,
-  name: 'my-fancy-nestjs-app',
-  config: {},
-  updatedAt: '6 hours ago',
-  createdAt: '1 month ago',
-};
 
 type DashboardDetailsProps = {
   tabTitle?: string;
@@ -25,31 +18,40 @@ type DashboardDetailsProps = {
 };
 
 export const DashboardDetails = (props: DashboardDetailsProps) => {
-  // const { projectId } = useParams();
-  // console.log(projectId);
+  const { projectId } = useParams();
+  const currentProject = useProjectStore((state) => state.currentProject);
+  const setCurrentProject = useProjectStore((state) => state.setCurrentProject);
+
+  useEffect(() => {
+    if (undefined === projectId) return;
+    getProjectFromId(projectId).then((project) => {
+      if (null === project) return;
+      setCurrentProject(project);
+    });
+  }, []);
 
   const breadcrumbs = useMemo(() => {
-    const b: BreadcrumbType[] = [{ title: appDetail.name, url: `/dashboard/${appDetail.id}` }];
+    const b: BreadcrumbType[] = [{ title: currentProject.name, url: `/dashboard/${currentProject.id}` }];
 
     if (undefined !== props.tabTitle && undefined !== props.tabSlug) {
-      b.push({ title: props.tabTitle, url: `/dashboard/${appDetail.id}/${props.tabSlug}` });
+      b.push({ title: props.tabTitle, url: `/dashboard/${currentProject.id}/${props.tabSlug}` });
     }
 
     return b;
-  }, [props.tabTitle, props.tabSlug]);
+  }, [currentProject, props.tabTitle, props.tabSlug]);
 
   const tabTitle = useMemo(() => {
-    if (undefined === props.tabTitle) return appDetail.name;
+    if (undefined === props.tabTitle) return currentProject.name;
 
     return (
       <Flex alignItems={'end'} gap={3}>
         <Badge p={2} rounded={'lg'} fontSize={'lg'} textTransform={'uppercase'}>
           {props.tabTitle}
         </Badge>
-        {appDetail.name}
+        {currentProject.name}
       </Flex>
     );
-  }, [props.tabTitle]);
+  }, [currentProject, props.tabTitle]);
 
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
@@ -58,18 +60,18 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
       case '/env':
         return <EnvironmentTab />;
       case '/settings':
-        return <SettingsTab project={appDetail} />;
+        return <SettingsTab project={currentProject} />;
       default:
-        return <OverviewTab project={appDetail} />;
+        return <OverviewTab project={currentProject} />;
     }
-  }, [props.tabSlug]);
+  }, [currentProject, props.tabSlug]);
 
   return (
     <DashboardTemplate
       breadcrumbs={breadcrumbs}
-      rightToBreadcrumbs={<StatusCard status={appDetail.status} />}
+      rightToBreadcrumbs={<StatusCard status={currentProject.status} />}
       pageTitle={tabTitle}
-      leftSidebar={<Sidebar currentPath={`/dashboard/${appDetail.id}`} currentTab={props.tabSlug} />}
+      leftSidebar={<Sidebar currentPath={`/dashboard/${currentProject.id}`} currentTab={props.tabSlug} />}
     >
       {tabContent}
     </DashboardTemplate>
