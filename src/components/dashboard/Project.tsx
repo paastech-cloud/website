@@ -12,7 +12,7 @@ export const Project = (props: ProjectProps) => {
   return (
     <Flex
       as={RouterLink}
-      to={`/dashboard/${props.project.uuid}`}
+      to={`/dashboard/${props.project.id}`}
       flexFlow={'column nowrap'}
       justifyContent={'space-between'}
       px={6}

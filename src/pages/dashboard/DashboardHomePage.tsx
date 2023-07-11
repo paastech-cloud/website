@@ -1,13 +1,25 @@
+import { useEffect, useState } from 'react';
 import { Card, CardBody, HStack, Link, Text } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { FaGithubAlt } from 'react-icons/fa';
 import { ProjectList } from '@components/dashboard/ProjectList';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
+import { getAllProjectsStatus } from '@helper/getAllProjectsStatus';
+import { ProjectType } from '@/typings/project.type';
 
 export const DashboardHomePage = () => {
+  const [projectsState, setProjectsState] = useState([] as ProjectType[]);
+
+  useEffect(() => {
+    getAllProjectsStatus().then((projects) => {
+      console.log(projects);
+      setProjectsState(projects);
+    });
+  }, []);
+
   return (
     <DashboardTemplate pageTitle={'Projects'} rightSidebar={rightSidebar} disableSpacing>
-      <ProjectList />
+      <ProjectList projects={projectsState} />
     </DashboardTemplate>
   );
 };

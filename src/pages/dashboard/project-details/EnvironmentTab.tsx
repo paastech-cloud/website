@@ -16,7 +16,7 @@ const appConfig: ConfigType = {
 type Vars = EnvVariableType & { index: number; error?: string };
 
 export const EnvironmentTab = () => {
-  const [envVars, setEnvVars] = useState<Vars[]>(appConfig.env.map((envVar, i) => ({ ...envVar, index: i })));
+  const [envVars, setEnvVars] = useState<Vars[]>(appConfig.env?.map((envVar, i) => ({ ...envVar, index: i })) ?? []);
   const validationSchema = Yup.object({
     envKey: Yup.string().required('An environment key is required').max(32, 'An environment key must be at most 32 characters'),
     envValue: Yup.string().max(2048, 'An environment value must be at most 2048 characters'),

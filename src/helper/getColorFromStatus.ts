@@ -2,15 +2,13 @@ import { ProjectStatus } from '@/typings/project.type';
 
 export const getColorFromStatus = (projectStatus: ProjectStatus) => {
   switch (projectStatus) {
-    case ProjectStatus.NO_DEPLOYMENT:
-      return 'gray.500';
-    case ProjectStatus.STARTING:
+    case ProjectStatus.STATUS_STARTING:
       return 'blue.500';
-    case ProjectStatus.RUNNING:
+    case ProjectStatus.STATUS_RUNNING:
       return 'green.500';
-    case ProjectStatus.STOPPING:
+    case ProjectStatus.STATUS_STOPPING:
       return 'orange.500';
-    case ProjectStatus.STOPPED:
+    case ProjectStatus.STATUS_STOPPED:
       return 'red.500';
     default:
       return 'black';

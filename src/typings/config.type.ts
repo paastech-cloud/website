@@ -1,5 +1,9 @@
+export type ApiConfigType = {
+  env?: Record<string, string>;
+};
+
 export type ConfigType = {
-  env: EnvVariableType[];
+  env?: EnvVariableType[];
 };
 
 export type EnvVariableType = {

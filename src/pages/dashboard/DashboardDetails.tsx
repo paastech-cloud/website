@@ -11,9 +11,10 @@ import { BreadcrumbType } from '@/typings/link.type';
 import { ProjectStatus, ProjectType } from '@/typings/project.type';
 
 const appDetail: ProjectType = {
-  uuid: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
-  status: ProjectStatus.STOPPED,
+  id: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
+  status: ProjectStatus.STATUS_STOPPED,
   name: 'my-fancy-nestjs-app',
+  config: {},
   updatedAt: '6 hours ago',
   createdAt: '1 month ago',
 };
@@ -28,10 +29,10 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
   // console.log(projectId);
 
   const breadcrumbs = useMemo(() => {
-    const b: BreadcrumbType[] = [{ title: appDetail.name, url: `/dashboard/${appDetail.uuid}` }];
+    const b: BreadcrumbType[] = [{ title: appDetail.name, url: `/dashboard/${appDetail.id}` }];
 
     if (undefined !== props.tabTitle && undefined !== props.tabSlug) {
-      b.push({ title: props.tabTitle, url: `/dashboard/${appDetail.uuid}/${props.tabSlug}` });
+      b.push({ title: props.tabTitle, url: `/dashboard/${appDetail.id}/${props.tabSlug}` });
     }
 
     return b;
@@ -68,7 +69,7 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
       breadcrumbs={breadcrumbs}
       rightToBreadcrumbs={<StatusCard status={appDetail.status} />}
       pageTitle={tabTitle}
-      leftSidebar={<Sidebar currentPath={`/dashboard/${appDetail.uuid}`} currentTab={props.tabSlug} />}
+      leftSidebar={<Sidebar currentPath={`/dashboard/${appDetail.id}`} currentTab={props.tabSlug} />}
     >
       {tabContent}
     </DashboardTemplate>

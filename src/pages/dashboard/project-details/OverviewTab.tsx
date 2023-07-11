@@ -25,8 +25,8 @@ export const OverviewTab = (props: ProjectDetailsTabProps) => {
         <VStack spacing={2} alignItems={'start'}>
           <Box>
             <Text as={'p'}>Hostname:</Text>
-            <Link href={`https://${props.project.uuid}.user-app.paastech.cloud`} isExternal color={'brand.bg'} fontWeight={'bold'}>
-              {`${props.project.uuid}.user-app.paastech.cloud`} <ExternalLinkIcon mx={'2px'} />
+            <Link href={`https://${props.project.id}.user-app.paastech.cloud`} isExternal color={'brand.bg'} fontWeight={'bold'}>
+              {`${props.project.id}.user-app.paastech.cloud`} <ExternalLinkIcon mx={'2px'} />
             </Link>
           </Box>
           <Text as={'p'}>

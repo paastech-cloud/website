@@ -22,7 +22,7 @@ export const SettingsTab = (props: ProjectDetailsTabProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const deleteProjectHandler = useCallback(() => {
-    console.log(`deleting project ${props.project.uuid}...`);
+    console.log(`deleting project ${props.project.id}...`);
     navigate('/dashboard');
   }, [props.project]);
 
