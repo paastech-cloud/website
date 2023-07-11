@@ -61,7 +61,7 @@ export const DashboardDetails = (props: DashboardDetailsProps) => {
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
       case '/logs':
-        return <LogsTab />;
+        return <LogsTab project={currentProject} />;
       case '/env':
         return <EnvironmentTab />;
       case '/settings':
