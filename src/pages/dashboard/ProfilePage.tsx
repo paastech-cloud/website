@@ -18,41 +18,47 @@ export const ProfilePage = () => {
   const sshKeys = data?.data?.content as SshkeyType[];
 
   const addSshKeyHandler = useCallback((name: string, value: string) => {
-    sshKeysApi.sshKeysControllerCreateSshKey({name, value})
-    .then(() => {
-      toast({
-        title: 'Ssh key added.',
-        description: 'A new ssh key was added successfully.',
-        status: 'success',
-        isClosable: true
-      });
-      refetch();
-    })
-    .catch(() => toast({
-      title: 'Error adding ssh key.',
-      description: "Couldn't add ssh key. Try again later.",
-      status: 'error',
-      isClosable: true
-    }));
+    sshKeysApi
+      .sshKeysControllerCreateSshKey({ name, value })
+      .then(() => {
+        toast({
+          title: 'Ssh key added.',
+          description: 'A new ssh key was added successfully.',
+          status: 'success',
+          isClosable: true,
+        });
+        refetch();
+      })
+      .catch(() =>
+        toast({
+          title: 'Error adding ssh key.',
+          description: "Couldn't add ssh key. Try again later.",
+          status: 'error',
+          isClosable: true,
+        }),
+      );
   }, []);
 
   const deleteSshKeyHandler = useCallback((sshKeyId: string) => {
-    sshKeysApi.sshKeysControllerDeleteSshKey(sshKeyId)
-    .then(() => {
-      toast({
-        title: 'Ssh key deleted.',
-        description: 'Ssh key was deleted successfully.',
-        status: 'success',
-        isClosable: true
-      });
-      refetch();
-    })
-    .catch(() => toast({
-      title: 'Error deleting ssh key.',
-      description: "Couldn't delete ssh key. Try again later.",
-      status: 'error',
-      isClosable: true
-    }));
+    sshKeysApi
+      .sshKeysControllerDeleteSshKey(sshKeyId)
+      .then(() => {
+        toast({
+          title: 'Ssh key deleted.',
+          description: 'Ssh key was deleted successfully.',
+          status: 'success',
+          isClosable: true,
+        });
+        refetch();
+      })
+      .catch(() =>
+        toast({
+          title: 'Error deleting ssh key.',
+          description: "Couldn't delete ssh key. Try again later.",
+          status: 'error',
+          isClosable: true,
+        }),
+      );
   }, []);
 
   return (
@@ -89,13 +95,13 @@ export const ProfilePage = () => {
           <Heading as={'h4'} fontSize={'lg'}>
             Your SSH keys
           </Heading>
-          {
-            isLoading ? <Spinner /> :
-            sshKeys.length > 0 ? sshKeys.map((sshKey) => (
-              <SshKeyCard key={sshKey.id} sshKey={sshKey} onDelete={deleteSshKeyHandler} />
-            )) :
+          {isLoading ? (
+            <Spinner />
+          ) : sshKeys.length > 0 ? (
+            sshKeys.map((sshKey) => <SshKeyCard key={sshKey.id} sshKey={sshKey} onDelete={deleteSshKeyHandler} />)
+          ) : (
             <Text>You dont have any ssh keys yet</Text>
-          }
+          )}
         </Stack>
       </Stack>
     </DashboardTemplate>
