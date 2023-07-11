@@ -1,26 +1,28 @@
-import { useCallback, useState } from 'react';
-import { Button, Flex, Stack } from '@chakra-ui/react';
+import { useCallback, useEffect, useState } from 'react';
+import { Button, Flex, Stack, useToast } from '@chakra-ui/react';
 import { FaPlus, FaSave } from 'react-icons/fa';
 import { EnvVariableInput } from '@components/dashboard/EnvVariableInput';
 import { ConfigType, EnvVariableType } from '@/typings/config.type';
-import { ValidationError } from 'yup';
 import * as Yup from 'yup';
-
-const appConfig: ConfigType = {
-  env: [
-    { envKey: 'KEY_A', value: 'VALUE_A' },
-    { envKey: 'KEY_B', value: 'VALUE_B' },
-  ],
-};
+import { ValidationError } from 'yup';
+import { useProjectStore } from '@/stores/project.store';
 
 type Vars = EnvVariableType & { index: number; error?: string };
 
 export const EnvironmentTab = () => {
-  const [envVars, setEnvVars] = useState<Vars[]>(appConfig.env?.map((envVar, i) => ({ ...envVar, index: i })) ?? []);
+  const project = useProjectStore((state) => state.currentProject);
+  const updateConfig = useProjectStore((state) => state.updateConfig);
+  const toast = useToast();
+
+  const [envVars, setEnvVars] = useState<Vars[]>(project.config.env?.map((envVar, i) => ({ ...envVar, index: i })) ?? []);
   const validationSchema = Yup.object({
     envKey: Yup.string().required('An environment key is required').max(32, 'An environment key must be at most 32 characters'),
     envValue: Yup.string().max(2048, 'An environment value must be at most 2048 characters'),
   });
+
+  useEffect(() => {
+    setEnvVars(project.config.env?.map((envVar, i) => ({ ...envVar, index: i })) ?? []);
+  }, [project.config.env]);
 
   // SAVE / ADD / DELETE / UPDATE callbacks
   const saveEnvVars = useCallback(async () => {
@@ -40,8 +42,12 @@ export const EnvironmentTab = () => {
         return;
       }
     }
-    console.log(envVars);
     setEnvVars(envVars);
+
+    const config: ConfigType = { env: envVars.map(({ envKey, value }): EnvVariableType => ({ envKey, value })) };
+    await updateConfig(config)
+      .then(() => toast({ title: 'Environment variables saved successfully 🎉', status: 'success', isClosable: true }))
+      .catch(() => toast({ title: 'Could not save your environment variables...', status: 'error', isClosable: true }));
   }, [envVars]);
 
   const addEnvVar = useCallback(() => {
