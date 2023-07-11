@@ -47,7 +47,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
-      - run: echo "vite_api_base = $VITE_API_BASE" && yarn build
+      - run: yarn build
         env:
           VITE_API_BASE: ${{ vars.API_BASE }}
 
