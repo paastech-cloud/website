@@ -10,20 +10,30 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import { FiTrash2 } from 'react-icons/fi';
-import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router';
+import { useProjectStore } from '@/stores/project.store';
+import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
 
 export const SettingsTab = (props: ProjectDetailsTabProps) => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const deleteProject = useProjectStore((state) => state.delete);
 
   const deleteProjectHandler = useCallback(() => {
-    console.log(`deleting project ${props.project.id}...`);
-    navigate('/dashboard');
+    deleteProject()
+      .then(() => {
+        toast({ title: `Project ${props.project.name} deleted successfully 🗑️`, status: 'success', isClosable: true });
+        navigate('/dashboard');
+      })
+      .catch(() => {
+        toast({ title: `Error couldn't delete the project ${props.project.name}...`, status: 'error', isClosable: true });
+      });
   }, [props.project]);
 
   return (

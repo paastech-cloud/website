@@ -13,6 +13,7 @@ type Action = {
   updateConfig: (config: ConfigType) => Promise<void>;
   deploy: () => Promise<void>;
   stop: () => Promise<void>;
+  delete: () => Promise<void>;
 };
 
 export const useProjectStore = create<State & Action>((set, get) => ({
@@ -49,5 +50,9 @@ export const useProjectStore = create<State & Action>((set, get) => ({
   stop: async () => {
     const project = get().currentProject;
     await projectsApi.projectsControllerStop(project.id);
+  },
+  delete: async () => {
+    const project = get().currentProject;
+    await projectsApi.projectsControllerDelete(project.id);
   },
 }));
