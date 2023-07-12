@@ -25,15 +25,11 @@ export const Root = () => {
             },
             {
               title: 'Docs',
-              link: 'https://paastech-cloud.github.io/docs',
+              link: 'https://github.com/paastech-cloud/docs',
             },
             {
-              title: 'Status',
-              link: '/status',
-            },
-            {
-              title: 'Community',
-              link: '/community',
+              title: 'GitHub',
+              link: 'https://github.com/paastech-cloud',
             },
           ]}
         />
