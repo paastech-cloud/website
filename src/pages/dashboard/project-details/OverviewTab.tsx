@@ -7,6 +7,7 @@ import { SimpleCard } from '@components/dashboard/SimpleCard';
 import { useProjectStore } from '@/stores/project.store';
 import { ProjectStatus } from '@/typings/project.type';
 import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
+import moment from 'moment';
 
 export const OverviewTab = (props: ProjectDetailsTabProps) => {
   const refresh = useProjectStore((state) => state.refreshCurrentProject);
@@ -60,14 +61,14 @@ export const OverviewTab = (props: ProjectDetailsTabProps) => {
           </Box>
           <Text as={'p'}>
             Creation date:{' '}
-            <Badge py={1} px={2} bg={'brand.bg'} color={'white'}>
-              {props.project.createdAt}
+            <Badge py={1} px={2} bg={'brand.bg'} color={'white'} rounded={'md'} textTransform={'capitalize'}>
+              {moment(props.project.createdAt).fromNow()}
             </Badge>
           </Text>
           <Text as={'p'}>
             Last updated:{' '}
-            <Badge py={1} px={2} bg={'brand.bg'} color={'white'}>
-              {props.project.updatedAt}
+            <Badge py={1} px={2} bg={'brand.bg'} color={'white'} rounded={'md'} textTransform={'capitalize'}>
+              {moment(props.project.updatedAt).fromNow()}
             </Badge>
           </Text>
         </VStack>
