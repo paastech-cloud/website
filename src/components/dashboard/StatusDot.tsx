@@ -11,19 +11,19 @@ export const StatusDot = (props: StatusDotProps) => {
   const color = getColorFromStatus(props.status);
 
   switch (props.status) {
-    case ProjectStatus.NO_DEPLOYMENT:
+    case ProjectStatus.STATUS_UNKNOWN:
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={color} rounded={'full'} cursor={'pointer'}></Box>;
       break;
-    case ProjectStatus.STARTING:
+    case ProjectStatus.STATUS_STARTING:
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={color} rounded={'full'} cursor={'pointer'}></Box>;
       break;
-    case ProjectStatus.RUNNING:
+    case ProjectStatus.STATUS_RUNNING:
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={color} rounded={'full'} cursor={'pointer'}></Box>;
       break;
-    case ProjectStatus.STOPPING:
+    case ProjectStatus.STATUS_STOPPING:
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={color} rounded={'full'} cursor={'pointer'}></Box>;
       break;
-    case ProjectStatus.STOPPED:
+    case ProjectStatus.STATUS_STOPPED:
       dot = <Box w={DOT_SIZE} h={DOT_SIZE} bg={color} rounded={'full'} cursor={'pointer'}></Box>;
       break;
     default:

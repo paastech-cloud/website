@@ -1,4 +1,4 @@
-import { Button, Container, Heading, Stack, Text, Box } from '@chakra-ui/react';
+import { Button, Container, Heading, Stack, Text, Box, Link } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { BiBook } from 'react-icons/bi';
@@ -41,12 +41,23 @@ export const Hero = () => {
         </Text>
 
         <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
-          <Button rounded={'lg'} size={'lg'} px={6} fontWeight={'normal'} color={'white'} bg={'brand.red'} _hover={{ bg: 'red.500' }} shadow={'md'}>
+          <Button
+            as={RouterLink}
+            to={'/register'}
+            rounded={'lg'}
+            size={'lg'}
+            px={6}
+            fontWeight={'normal'}
+            color={'white'}
+            bg={'brand.red'}
+            _hover={{ bg: 'red.500' }}
+            shadow={'md'}
+          >
             Getting Started
           </Button>
           <Button
-            as={RouterLink}
-            to={'https://paastech-cloud.github.io/docs'}
+            as={Link}
+            href={'https://github.com/paastech-cloud/docs'}
             rounded={'lg'}
             size={'lg'}
             px={6}

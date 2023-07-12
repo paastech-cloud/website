@@ -23,8 +23,10 @@ export const LoginPage = () => {
   });
 
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (values: LoginFormType) => {
+    setIsLoading(true);
     // Handle form submission here
     authApi
       .authControllerLogin(values)
@@ -38,7 +40,8 @@ export const LoginPage = () => {
       })
       .catch(() => {
         setError('Wrong username or password');
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -85,6 +88,8 @@ export const LoginPage = () => {
                       _hover={{
                         bg: 'brand.red',
                       }}
+                      isLoading={isLoading}
+                      loadingText={'Submitting'}
                     >
                       Login
                     </Button>

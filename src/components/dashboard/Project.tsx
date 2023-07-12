@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { RxCounterClockwiseClock } from 'react-icons/rx';
 import { StatusDot } from '@components/dashboard/StatusDot';
 import { ProjectType } from '@/typings/project.type';
+import moment from 'moment';
 
 type ProjectProps = {
   project: ProjectType;
@@ -12,7 +13,7 @@ export const Project = (props: ProjectProps) => {
   return (
     <Flex
       as={RouterLink}
-      to={`/dashboard/${props.project.uuid}`}
+      to={`/dashboard/${props.project.id}`}
       flexFlow={'column nowrap'}
       justifyContent={'space-between'}
       px={6}
@@ -32,7 +33,7 @@ export const Project = (props: ProjectProps) => {
         <Tooltip label={'Last updated'} rounded={'md'}>
           <HStack>
             <RxCounterClockwiseClock />
-            <Text color={'gray.500'}>{props.project.updatedAt}</Text>
+            <Text color={'gray.500'}>{moment(props.project.updatedAt).fromNow()}</Text>
           </HStack>
         </Tooltip>
       </Flex>

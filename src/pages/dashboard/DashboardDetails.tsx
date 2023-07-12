@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { Badge, Flex } from '@chakra-ui/react';
+import { Badge, Flex, useToast } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OverviewTab } from '@pages/dashboard/project-details/OverviewTab';
 import { LogsTab } from '@pages/dashboard/project-details/LogsTab';
 import { EnvironmentTab } from '@pages/dashboard/project-details/EnvironmentTab';
@@ -7,16 +8,9 @@ import { SettingsTab } from '@pages/dashboard/project-details/SettingsTab';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { StatusCard } from '@components/dashboard/StatusCard';
+import { useProjectStore } from '@/stores/project.store';
 import { BreadcrumbType } from '@/typings/link.type';
-import { ProjectStatus, ProjectType } from '@/typings/project.type';
-
-const appDetail: ProjectType = {
-  uuid: 'e94c2fb8-790b-449d-9bc1-f6987130c09f',
-  status: ProjectStatus.STOPPED,
-  name: 'my-fancy-nestjs-app',
-  updatedAt: '6 hours ago',
-  createdAt: '1 month ago',
-};
+import { useQuery } from 'react-query';
 
 type DashboardDetailsProps = {
   tabTitle?: string;
@@ -24,51 +18,65 @@ type DashboardDetailsProps = {
 };
 
 export const DashboardDetails = (props: DashboardDetailsProps) => {
-  // const { projectId } = useParams();
-  // console.log(projectId);
+  const { projectId } = useParams();
+  const navigate = useNavigate();
+  const toast = useToast();
+  const currentProject = useProjectStore((state) => state.currentProject);
+  const refreshProject = useProjectStore((state) => state.refreshCurrentProject);
+
+  useQuery('fetch project details', () => {
+    if (undefined === projectId) {
+      navigate(-1);
+      return;
+    }
+    refreshProject(projectId).catch((e: Error) => {
+      toast({ title: e.message, status: 'error', isClosable: true });
+      navigate(-1);
+    });
+  });
 
   const breadcrumbs = useMemo(() => {
-    const b: BreadcrumbType[] = [{ title: appDetail.name, url: `/dashboard/${appDetail.uuid}` }];
+    const b: BreadcrumbType[] = [{ title: currentProject.name, url: `/dashboard/${currentProject.id}` }];
 
     if (undefined !== props.tabTitle && undefined !== props.tabSlug) {
-      b.push({ title: props.tabTitle, url: `/dashboard/${appDetail.uuid}/${props.tabSlug}` });
+      b.push({ title: props.tabTitle, url: `/dashboard/${currentProject.id}/${props.tabSlug}` });
     }
 
     return b;
-  }, [props.tabTitle, props.tabSlug]);
+  }, [currentProject, props.tabTitle, props.tabSlug]);
 
   const tabTitle = useMemo(() => {
-    if (undefined === props.tabTitle) return appDetail.name;
+    if (undefined === props.tabTitle) return currentProject.name;
 
     return (
       <Flex alignItems={'end'} gap={3}>
         <Badge p={2} rounded={'lg'} fontSize={'lg'} textTransform={'uppercase'}>
           {props.tabTitle}
         </Badge>
-        {appDetail.name}
+        {currentProject.name}
       </Flex>
     );
-  }, [props.tabTitle]);
+  }, [currentProject, props.tabTitle]);
 
   const tabContent = useMemo(() => {
     switch (props.tabSlug) {
       case '/logs':
-        return <LogsTab />;
+        return <LogsTab project={currentProject} />;
       case '/env':
         return <EnvironmentTab />;
       case '/settings':
-        return <SettingsTab project={appDetail} />;
+        return <SettingsTab project={currentProject} />;
       default:
-        return <OverviewTab project={appDetail} />;
+        return <OverviewTab project={currentProject} />;
     }
-  }, [props.tabSlug]);
+  }, [currentProject, props.tabSlug]);
 
   return (
     <DashboardTemplate
       breadcrumbs={breadcrumbs}
-      rightToBreadcrumbs={<StatusCard status={appDetail.status} />}
+      rightToBreadcrumbs={<StatusCard status={currentProject.status} />}
       pageTitle={tabTitle}
-      leftSidebar={<Sidebar currentPath={`/dashboard/${appDetail.uuid}`} currentTab={props.tabSlug} />}
+      leftSidebar={<Sidebar currentPath={`/dashboard/${currentProject.id}`} currentTab={props.tabSlug} />}
     >
       {tabContent}
     </DashboardTemplate>

@@ -1,16 +1,31 @@
+import { ApiConfigType, ConfigType } from '@/typings/config.type';
+
+export type ApiProjectType = {
+  id: string;
+  name: string;
+  config: ApiConfigType;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type ProjectType = {
-  uuid: string;
+  id: string;
   status: ProjectStatus;
   name: string;
+  config: ConfigType;
   updatedAt: string;
   createdAt: string;
 };
 
+export type ApiProjectStatus = {
+  container_name: string;
+  container_status: keyof typeof ProjectStatus;
+};
+
 export enum ProjectStatus {
-  UNKNOWN = 'unknown',
-  NO_DEPLOYMENT = 'no deployment',
-  STARTING = 'starting',
-  RUNNING = 'running',
-  STOPPING = 'stopping',
-  STOPPED = 'stopped',
+  STATUS_UNKNOWN = 'unknown',
+  STATUS_STARTING = 'starting',
+  STATUS_RUNNING = 'running',
+  STATUS_STOPPING = 'stopping',
+  STATUS_STOPPED = 'stopped',
 }
