@@ -15,7 +15,7 @@ export const MenuAccount = () => {
       .authControllerLogout()
       .then(() => {
         removeAccessExpiration();
-        navigate('/login');
+        navigate('/');
       })
       .catch(() => {
         console.log('Log out error');
