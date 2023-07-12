@@ -9,16 +9,20 @@ import { ProjectType } from '@/typings/project.type';
 
 export const DashboardHomePage = () => {
   const [projectsState, setProjectsState] = useState([] as ProjectType[]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getAllUserProjectsStatus().then((projects) => {
-      setProjectsState(projects);
-    });
+    setIsLoading(true);
+    getAllUserProjectsStatus()
+      .then((projects) => {
+        setProjectsState(projects);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <DashboardTemplate pageTitle={'Projects'} rightSidebar={rightSidebar} disableSpacing>
-      <ProjectList projects={projectsState} />
+      {!isLoading && <ProjectList projects={projectsState} />}
     </DashboardTemplate>
   );
 };
