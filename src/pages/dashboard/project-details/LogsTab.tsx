@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
 import { projectsApi } from '@/api/api';
 import { ProjectDetailsTabProps } from '@/typings/project-details-tab.type';
+import { ProjectStatus } from '@/typings/project.type';
 
 export const LogsTab = (props: ProjectDetailsTabProps) => {
   const [logs, setLogs] = useState<string>('');
@@ -11,13 +12,12 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
 
   // Fetch logs
   const { isLoading, refetch } = useQuery('fetch project logs', () => {
-    if (props.project.id === '') return;
+    if (props.project.id === '' || props.project.status !== ProjectStatus.STATUS_RUNNING) return;
     projectsApi
       .projectsControllerGetLogs(props.project.id)
       .then((response) => {
         const content = response.data.content as { logs?: string };
-        if (!content.logs) throw new Error('No logs in data requested');
-        setLogs(content.logs);
+        setLogs(content.logs ?? '');
       })
       .catch(() => {
         toast({
@@ -33,7 +33,6 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
   });
 
   useEffect(() => {
-    console.log('projectId updated', props.project.id);
     refetch();
   }, [props.project.id]);
 
@@ -45,7 +44,7 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
       w={'full'}
       h={'full'}
       maxH={'500px'}
-      lineHeight={'14px'}
+      lineHeight={'18px'}
       whiteSpace={'pre'}
       color={'white'}
       backgroundColor={'gray.800'}
@@ -53,6 +52,8 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
       shadow={'md'}
       css={hideScrollbar}
     >
+      {props.project.status !== ProjectStatus.STATUS_RUNNING ? <>The project is not running, you can't see the logs in this state...</> : null}
+      {!isLoading && logs === '' ? <>No logs...</> : null}
       {isLoading ? (
         <>
           <Spinner />
