@@ -26,9 +26,6 @@ export const LogsTab = (props: ProjectDetailsTabProps) => {
           status: 'error',
           isClosable: true,
         });
-      })
-      .finally(() => {
-        setTimeout(() => refetch(), 10_000);
       });
   });
 
