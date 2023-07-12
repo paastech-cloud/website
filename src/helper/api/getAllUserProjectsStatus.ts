@@ -3,14 +3,13 @@ import { getProjectsStatus } from '@helper/api/getProjectsStatus';
 import { mergeApiProjectWithStatus } from '@helper/api/mergeApiProjectWithStatus';
 import { ApiProjectType, ProjectType } from '@/typings/project.type';
 
-export const getAllProjectsStatus = async (): Promise<ProjectType[]> => {
+export const getAllUserProjectsStatus = async (isAdmin?: boolean): Promise<ProjectType[]> => {
   // Fetch all user's projects
-  const apiProjects: ApiProjectType[] = await projectsApi
-    .projectsControllerFindAll()
+  const apiProjects: ApiProjectType[] = await (isAdmin ? projectsApi.projectsControllerFindAll() : projectsApi.projectsControllerFindAllForUser())
     .then((response) => {
-      const content = response.data.content as ApiProjectType[];
-      if (!content) return [];
-      return content;
+      const data = response.data as { content: ApiProjectType[] };
+      if (!data.content) return [];
+      return data.content;
     })
     .catch(() => []);
   if (apiProjects.length === 0) return [];

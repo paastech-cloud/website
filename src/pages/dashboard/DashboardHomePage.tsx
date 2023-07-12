@@ -4,14 +4,14 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { FaGithubAlt } from 'react-icons/fa';
 import { ProjectList } from '@components/dashboard/ProjectList';
 import { DashboardTemplate } from '@components/dashboard/DashboardTemplate';
-import { getAllProjectsStatus } from '@helper/api/getAllProjectsStatus';
+import { getAllUserProjectsStatus } from '@helper/api/getAllUserProjectsStatus';
 import { ProjectType } from '@/typings/project.type';
 
 export const DashboardHomePage = () => {
   const [projectsState, setProjectsState] = useState([] as ProjectType[]);
 
   useEffect(() => {
-    getAllProjectsStatus().then((projects) => {
+    getAllUserProjectsStatus().then((projects) => {
       setProjectsState(projects);
     });
   }, []);
